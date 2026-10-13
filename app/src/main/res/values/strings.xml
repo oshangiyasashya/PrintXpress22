@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">PrintXpress</string>
+    <string name="product_catalog">Product Catalog</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_products">Products</string>
+    <string name="nav_orders">My Orders</string>
+    <string name="nav_offers">Offers</string>
+    <string name="nav_support">Design Support</string>
+    <string name="nav_profile">My Profile</string>
+    <string name="nav_logout">Logout</string>
+    <string name="title_home">Home</string>
+    <string name="title_products">Our Products</string>
+    <string name="title_orders">My Orders</string>
+    <string name="title_profile">My Profile</string>
+    <string name="title_support">Design Support &amp; Resources</string>
+    <string name="login_title">Login</string>
+    <string name="register_title">Create Account</string>
+    <string name="welcome_message">Welcome back</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_register">Register</string>
+    <string name="prompt_no_account">Don\'t have an account? Register</string>
+    <string name="prompt_has_account">Already have an account? Login</string>
+    <string name="menu_notifications">Notifications</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+</resources>

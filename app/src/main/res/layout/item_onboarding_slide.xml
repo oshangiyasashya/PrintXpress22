@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp"
+    android:background="@color/background">
+
+    <ImageView
+        android:id="@+id/ivOnboardingImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/printxpress_logo"
+        android:contentDescription="Onboarding Slide"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:id="@+id/tvOnboardingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Design Your Vision"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:gravity="center"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:id="@+id/tvOnboardingDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose from hundreds of customizable templates or upload your own studio artworks seamlessly."
+        android:textSize="14sp"
+        android:textColor="@color/text_secondary"
+        android:gravity="center" />
+
+</LinearLayout>

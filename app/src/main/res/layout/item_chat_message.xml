@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="6dp">
+
+    <!-- User Outgoing Message Bubble (Right) -->
+    <LinearLayout
+        android:id="@+id/layoutUserBubble"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="end"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="6dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_order_gradient"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/tvUserSubject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inquiry"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="#93C5FD"
+                android:layout_marginBottom="2dp"/>
+
+            <TextView
+                android:id="@+id/tvUserMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User message goes here..."
+                android:textSize="14sp"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvUserTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="14:30"
+            android:textSize="10sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="2dp"/>
+
+    </LinearLayout>
+
+    <!-- Support Incoming Reply Bubble (Left) -->
+    <LinearLayout
+        android:id="@+id/layoutAgentBubble"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="start"
+        android:layout_marginEnd="48dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/surface"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="10dp"
+            android:elevation="1dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PrintXpress Agent"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SUPPORT"
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:background="#2563EB"
+                    android:paddingHorizontal="4dp"
+                    android:paddingVertical="1dp"
+                    android:layout_marginStart="6dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvAgentReply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Support reply message goes here..."
+                android:textSize="14sp"
+                android:textColor="@color/text_primary"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvAgentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="14:31"
+            android:textSize="10sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="2dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

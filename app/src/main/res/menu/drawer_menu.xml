@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/catalogFragment"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="@string/nav_home" />
+    <item
+        android:id="@+id/productsFragment"
+        android:icon="@android:drawable/ic_menu_gallery"
+        android:title="@string/nav_products" />
+    <item
+        android:id="@+id/cartFragment"
+        android:icon="@drawable/ic_cart"
+        android:title="My Cart" />
+    <item
+        android:id="@+id/ordersFragment"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        android:title="@string/nav_orders" />
+    <item
+        android:id="@+id/infoFragment"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="@string/nav_offers" />
+    <item
+        android:id="@+id/infoSupport"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="@string/nav_support" />
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:title="@string/nav_profile" />
+    <item
+        android:id="@+id/action_logout"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:title="@string/nav_logout" />
+</menu>

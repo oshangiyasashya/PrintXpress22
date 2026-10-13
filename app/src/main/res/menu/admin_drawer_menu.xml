@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_admin_home"
+            android:icon="@android:drawable/ic_menu_compass"
+            android:title="Dashboard Home" />
+        <item
+            android:id="@+id/nav_admin_orders"
+            android:icon="@android:drawable/ic_menu_recent_history"
+            android:title="Orders &amp; Fulfillment" />
+        <item
+            android:id="@+id/nav_admin_customers"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="Customers &amp; Staff" />
+        <item
+            android:id="@+id/nav_admin_catalog"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="Products, Templates &amp; Pricing" />
+        <item
+            android:id="@+id/nav_admin_marketing"
+            android:icon="@android:drawable/ic_menu_send"
+            android:title="Offers &amp; Support Tickets" />
+        <item
+            android:id="@+id/nav_admin_reports"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:title="Sales &amp; Export Reports" />
+        <item
+            android:id="@+id/nav_admin_activity_log"
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="Admin Activity Log" />
+    </group>
+
+    <item android:title="System Account">
+        <menu>
+            <item
+                android:id="@+id/nav_admin_logout"
+                android:icon="@android:drawable/ic_menu_close_clear_cancel"
+                android:title="Sign Out" />
+        </menu>
+    </item>
+</menu>

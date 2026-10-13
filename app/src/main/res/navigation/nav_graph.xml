@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+    <fragment android:id="@+id/loginFragment" android:name="com.printxpress.ui.auth.LoginFragment" />
+    <fragment android:id="@+id/registerFragment" android:name="com.printxpress.ui.auth.RegisterFragment" />
+    <fragment android:id="@+id/catalogFragment" android:name="com.printxpress.ui.catalog.CatalogFragment" />
+    <fragment android:id="@+id/ordersFragment" android:name="com.printxpress.ui.orders.OrdersFragment" />
+    <fragment android:id="@+id/profileFragment" android:name="com.printxpress.ui.profile.ProfileFragment" />
+    <fragment android:id="@+id/infoFragment" android:name="com.printxpress.ui.info.InfoFragment" />
+    <fragment android:id="@+id/productsFragment" android:name="com.printxpress.ui.catalog.ProductsFragment" />
+    <fragment android:id="@+id/productDetailFragment" android:name="com.printxpress.ui.catalog.ProductDetailFragment" />
+    <fragment android:id="@+id/designFragment" android:name="com.printxpress.ui.catalog.DesignFragment" />
+    <fragment android:id="@+id/checkoutFragment" android:name="com.printxpress.ui.catalog.CheckoutFragment" />
+    <fragment android:id="@+id/orderDetailsFragment" android:name="com.printxpress.ui.orders.OrderDetailsFragment" />
+    <fragment android:id="@+id/addressesFragment" android:name="com.printxpress.ui.profile.AddressesFragment" />
+    <fragment android:id="@+id/savedDesignsFragment" android:name="com.printxpress.ui.profile.SavedDesignsFragment" />
+    <fragment android:id="@+id/notificationsFragment" android:name="com.printxpress.ui.profile.NotificationsFragment" />
+    <fragment android:id="@+id/templateEditorFragment" android:name="com.printxpress.ui.catalog.UniversalTemplateEditorFragment" />
+    <fragment android:id="@+id/universalTemplateEditorFragment" android:name="com.printxpress.ui.catalog.UniversalTemplateEditorFragment" />
+    <fragment android:id="@+id/cartFragment" android:name="com.printxpress.ui.catalog.CartFragment" />
+</navigation>

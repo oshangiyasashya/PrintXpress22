@@ -1,0 +1,748 @@
+--- app/src/main/java/com/printxpress/data/entity/Product.java ---
+package com.printxpress.data.entity;
+
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
+@Entity(
+        tableName = "products",
+        foreignKeys = @ForeignKey(
+                entity = Category.class,
+                parentColumns = "id",
+                childColumns = "categoryId",
+                onDelete = ForeignKey.CASCADE
+        ),
+        indices = {@Index("categoryId")}
+)
+public class Product {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
+    public long categoryId;
+    public String name;
+    public String description;
+    public double basePrice;
+    public int imageRes;
+    public String material;
+    public String sizes;
+
+    public Product(long categoryId, String name, String description, double basePrice, int imageRes, String material, String sizes) {
+        this.categoryId = categoryId;
+        this.name = name;
+        this.description = description;
+        this.basePrice = basePrice;
+        this.imageRes = imageRes;
+        this.material = material;
+        this.sizes = sizes;
+    }
+}
+
+
+--- app/src/main/java/com/printxpress/data/entity/Category.java ---
+package com.printxpress.data.entity;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "categories")
+public class Category {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
+    public String name;
+    public int iconRes;
+
+    public Category(String name, int iconRes) {
+        this.name = name;
+        this.iconRes = iconRes;
+    }
+}
+
+
+--- app/src/main/java/com/printxpress/data/entity/Promotion.java ---
+package com.printxpress.data.entity;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "promotions")
+public class Promotion {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
+    public String title;
+    public String description;
+    public double discountPercent;
+    public int minQuantity;
+    public long validFrom;
+    public long validTo;
+
+    public Promotion(String title, String description, double discountPercent, int minQuantity, long validFrom, long validTo) {
+        this.title = title;
+        this.description = description;
+        this.discountPercent = discountPercent;
+        this.minQuantity = minQuantity;
+        this.validFrom = validFrom;
+        this.validTo = validTo;
+    }
+}
+
+
+--- app/src/main/java/com/printxpress/data/entity/SampleDesign.java ---
+package com.printxpress.data.entity;
+
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
+@Entity(
+        tableName = "sample_designs",
+        foreignKeys = @ForeignKey(
+                entity = Category.class,
+                parentColumns = "id",
+                childColumns = "categoryId",
+                onDelete = ForeignKey.CASCADE
+        ),
+        indices = {@Index("categoryId")}
+)
+public class SampleDesign {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
+    public long categoryId;
+    public String title;
+    public int imageRes;
+
+    public SampleDesign(long categoryId, String title, int imageRes) {
+        this.categoryId = categoryId;
+        this.title = title;
+        this.imageRes = imageRes;
+    }
+}
+
+
+--- app/src/main/java/com/printxpress/data/entity/Address.java ---
+package com.printxpress.data.entity;
+
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
+@Entity(
+        tableName = "addresses",
+        foreignKeys = @ForeignKey(
+                entity = User.class,
+                parentColumns = "id",
+                childColumns = "userId",
+                onDelete = ForeignKey.CASCADE
+        ),
+        indices = {@Index("userId")}
+)
+public class Address {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
+    public long userId;
+    public String label;
+    public String line1;
+    public String city;
+    public String district;
+    public String postalCode;
+    public boolean isDefault;
+
+    public Address(long userId, String label, String line1, String city, String district, String postalCode, boolean isDefault) {
+        this.userId = userId;
+        this.label = label;
+        this.line1 = line1;
+        this.city = city;
+        this.district = district;
+        this.postalCode = postalCode;
+        this.isDefault = isDefault;
+    }
+}
+
+
+--- app/src/main/java/com/printxpress/data/entity/User.java ---
+package com.printxpress.data.entity;
+
+import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
+@Entity(
+        tableName = "users",
+        indices = {
+                @Index(value = "email", unique = true),
+                @Index(value = "phone", unique = true)
+        }
+)
+public class User {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
+    public String fullName;
+    public String email;
+    public String phone;
+    public String passwordHash;
+    public String salt;
+    public long createdAt;
+
+    public User(String fullName, String email, String phone, String passwordHash, String salt, long createdAt) {
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.passwordHash = passwordHash;
+        this.salt = salt;
+        this.createdAt = createdAt;
+    }
+}
+
+
+--- app/src/main/java/com/printxpress/data/entity/SavedDesign.java ---
+package com.printxpress.data.entity;
+
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
+@Entity(
+        tableName = "saved_designs",
+        foreignKeys = @ForeignKey(
+                entity = User.class,
+                parentColumns = "id",
+                childColumns = "userId",
+                onDelete = ForeignKey.CASCADE
+        ),
+        indices = {@Index("userId")}
+)
+public class SavedDesign {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
+    public long userId;
+    public String name;
+    public String filePath;
+    public long createdAt;
+
+    public SavedDesign(long userId, String name, String filePath, long createdAt) {
+        this.userId = userId;
+        this.name = name;
+        this.filePath = filePath;
+        this.createdAt = createdAt;
+    }
+}
+
+
+--- app/src/main/java/com/printxpress/data/entity/ProductOption.java ---
+package com.printxpress.data.entity;
+
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
+@Entity(
+        tableName = "product_options",
+        foreignKeys = @ForeignKey(
+                entity = Product.class,
+                parentColumns = "id",
+                childColumns = "productId",
+                onDelete = ForeignKey.CASCADE
+        ),
+        indices = {@Index("productId")}
+)
+public class ProductOption {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
+    public long productId;
+    public String type; // e.g. "Paper Type", "Size", "Finish"
+    public String value;
+    public double priceModifier;
+
+    public ProductOption(long productId, String type, String value, double priceModifier) {
+        this.productId = productId;
+        this.type = type;
+        this.value = value;
+        this.priceModifier = priceModifier;
+    }
+}
+
+
+--- app/src/main/java/com/printxpress/data/entity/Faq.java ---
+package com.printxpress.data.entity;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "faqs")
+public class Faq {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
+    public String question;
+    public String answer;
+
+    public Faq(String question, String answer) {
+        this.question = question;
+        this.answer = answer;
+    }
+}
+
+
+--- app/src/main/java/com/printxpress/data/entity/OrderStatusHistory.java ---
+package com.printxpress.data.entity;
+
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
+@Entity(
+        tableName = "order_status_history",
+        foreignKeys = @ForeignKey(
+                entity = Order.class,
+                parentColumns = "id",
+                childColumns = "orderId",
+                onDelete = ForeignKey.CASCADE
+        ),
+        indices = {@Index("orderId")}
+)
+public class OrderStatusHistory {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
+    public long orderId;
+    public String status;
+    public long timestamp;
+
+    public OrderStatusHistory(long orderId, String status, long timestamp) {
+        this.orderId = orderId;
+        this.status = status;
+        this.timestamp = timestamp;
+    }
+}
+
+
+--- app/src/main/java/com/printxpress/data/entity/Notification.java ---
+package com.printxpress.data.entity;
+
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
+@Entity(
+        tableName = "notifications",
+        foreignKeys = @ForeignKey(
+                entity = User.class,
+                parentColumns = "id",
+                childColumns = "userId",
+                onDelete = ForeignKey.CASCADE
+        ),
+        indices = {@Index("userId")}
+)
+public class Notification {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
+    public long userId;
+    public String title;
+    public String message;
+    public String type; // "ORDER", "PROMOTION", "SYSTEM"
+    public boolean isRead;
+    public long createdAt;
+
+    public Notification(long userId, String title, String message, String type, boolean isRead, long createdAt) {
+        this.userId = userId;
+        this.title = title;
+        this.message = message;
+        this.type = type;
+        this.isRead = isRead;
+        this.createdAt = createdAt;
+    }
+}
+
+
+--- app/src/main/java/com/printxpress/data/entity/OrderItem.java ---
+package com.printxpress.data.entity;
+
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
+@Entity(
+        tableName = "order_items",
+        foreignKeys = {
+                @ForeignKey(
+                        entity = Order.class,
+                        parentColumns = "id",
+                        childColumns = "orderId",
+                        onDelete = ForeignKey.CASCADE
+                ),
+                @ForeignKey(
+                        entity = Product.class,
+                        parentColumns = "id",
+                        childColumns = "productId",
+                        onDelete = ForeignKey.CASCADE
+                )
+        },
+        indices = {@Index("orderId"), @Index("productId")}
+)
+public class OrderItem {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
+    public long orderId;
+    public long productId;
+    public int quantity;
+    public String selectedOptions;
+    public String customText;
+    public String designFilePath;
+    public double unitPrice;
+
+    public OrderItem(long orderId, long productId, int quantity, String selectedOptions, String customText, String designFilePath, double unitPrice) {
+        this.orderId = orderId;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.selectedOptions = selectedOptions;
+        this.customText = customText;
+        this.designFilePath = designFilePath;
+        this.unitPrice = unitPrice;
+    }
+}
+
+
+--- app/src/main/java/com/printxpress/data/entity/Order.java ---
+package com.printxpress.data.entity;
+
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
+@Entity(
+        tableName = "orders",
+        foreignKeys = {
+                @ForeignKey(
+                        entity = User.class,
+                        parentColumns = "id",
+                        childColumns = "userId",
+                        onDelete = ForeignKey.CASCADE
+                ),
+                @ForeignKey(
+                        entity = Address.class,
+                        parentColumns = "id",
+                        childColumns = "addressId",
+                        onDelete = ForeignKey.SET_NULL
+                )
+        },
+        indices = {@Index("userId"), @Index("addressId")}
+)
+public class Order {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
+    public long userId;
+    public String status; // "PENDING", "PROCESSING", "READY", "DELIVERED", "CANCELLED"
+    public String deliveryType; // "DELIVERY", "PICKUP"
+    public Long addressId;
+    public long scheduledDate;
+    public double totalPrice;
+    public String notes;
+    public long createdAt;
+
+    public Order(long userId, String status, String deliveryType, Long addressId, long scheduledDate, double totalPrice, String notes, long createdAt) {
+        this.userId = userId;
+        this.status = status;
+        this.deliveryType = deliveryType;
+        this.addressId = addressId;
+        this.scheduledDate = scheduledDate;
+        this.totalPrice = totalPrice;
+        this.notes = notes;
+        this.createdAt = createdAt;
+    }
+}
+
+
+--- app/src/main/java/com/printxpress/data/db/OrderDao.java ---
+package com.printxpress.data.db;
+
+import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
+import androidx.room.Transaction;
+import com.printxpress.data.entity.Order;
+import com.printxpress.data.entity.OrderItem;
+import com.printxpress.data.entity.OrderStatusHistory;
+import java.util.List;
+
+@Dao
+public interface OrderDao {
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    long insertOrder(Order order);
+
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    void insertOrderItems(List<OrderItem> items);
+
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    void insertStatusHistory(OrderStatusHistory history);
+
+    @Query("SELECT * FROM orders WHERE userId = :userId ORDER BY createdAt DESC")
+    LiveData<List<Order>> getOrdersByUser(long userId);
+
+    @Query("SELECT * FROM orders WHERE id = :orderId LIMIT 1")
+    LiveData<Order> getOrderById(long orderId);
+
+    @Query("SELECT * FROM order_items WHERE orderId = :orderId")
+    LiveData<List<OrderItem>> getItemsForOrder(long orderId);
+
+    @Query("SELECT * FROM order_status_history WHERE orderId = :orderId ORDER BY timestamp ASC")
+    LiveData<List<OrderStatusHistory>> getStatusHistory(long orderId);
+
+    @Query("UPDATE orders SET status = :status WHERE id = :orderId")
+    void updateOrderStatus(long orderId, String status);
+}
+
+
+--- app/src/main/java/com/printxpress/data/db/CommonDao.java ---
+package com.printxpress.data.db;
+
+import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
+import com.printxpress.data.entity.Address;
+import com.printxpress.data.entity.Faq;
+import com.printxpress.data.entity.Notification;
+import com.printxpress.data.entity.Promotion;
+import com.printxpress.data.entity.SavedDesign;
+import java.util.List;
+
+@Dao
+public interface CommonDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertFaqs(Faq... faqs);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertPromotions(Promotion... promos);
+
+    @Query("SELECT * FROM faqs")
+    LiveData<List<Faq>> getAllFaqs();
+
+    @Query("SELECT * FROM promotions WHERE :now BETWEEN validFrom AND validTo")
+    LiveData<List<Promotion>> getActivePromotions(long now);
+
+    @Insert
+    long insertAddress(Address address);
+
+    @Query("SELECT * FROM addresses WHERE userId = :userId")
+    LiveData<List<Address>> getAddressesByUser(long userId);
+
+    @Insert
+    long insertNotification(Notification notification);
+
+    @Query("SELECT * FROM notifications WHERE userId = :userId ORDER BY createdAt DESC")
+    LiveData<List<Notification>> getNotificationsByUser(long userId);
+
+    @Insert
+    long insertSavedDesign(SavedDesign design);
+
+    @Query("SELECT * FROM saved_designs WHERE userId = :userId ORDER BY createdAt DESC")
+    LiveData<List<SavedDesign>> getSavedDesigns(long userId);
+}
+
+
+--- app/src/main/java/com/printxpress/data/db/CatalogDao.java ---
+package com.printxpress.data.db;
+
+import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
+import com.printxpress.data.entity.Category;
+import com.printxpress.data.entity.Product;
+import com.printxpress.data.entity.ProductOption;
+import com.printxpress.data.entity.SampleDesign;
+import java.util.List;
+
+@Dao
+public interface CatalogDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long[] insertCategories(Category... categories);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long[] insertProducts(Product... products);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertOptions(ProductOption... options);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertSampleDesigns(SampleDesign... designs);
+
+    @Query("SELECT * FROM categories ORDER BY id ASC")
+    LiveData<List<Category>> getAllCategories();
+
+    @Query("SELECT * FROM products WHERE categoryId = :catId")
+    LiveData<List<Product>> getProductsByCategory(long catId);
+
+    @Query("SELECT * FROM products WHERE id = :productId LIMIT 1")
+    LiveData<Product> getProductById(long productId);
+
+    @Query("SELECT * FROM product_options WHERE productId = :productId")
+    LiveData<List<ProductOption>> getOptionsByProduct(long productId);
+
+    @Query("SELECT * FROM sample_designs WHERE categoryId = :categoryId")
+    LiveData<List<SampleDesign>> getSamplesByCategory(long categoryId);
+}
+
+
+--- app/src/main/java/com/printxpress/data/db/UserDao.java ---
+package com.printxpress.data.db;
+
+import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
+import androidx.room.Update;
+import com.printxpress.data.entity.User;
+
+@Dao
+public interface UserDao {
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    long insert(User user);
+
+    @Update
+    void update(User user);
+
+    @Query("SELECT * FROM users WHERE email = :email LIMIT 1")
+    User getUserByEmailSync(String email);
+
+    @Query("SELECT * FROM users WHERE id = :id LIMIT 1")
+    LiveData<User> getUserById(long id);
+}
+
+
+--- app/src/main/java/com/printxpress/data/db/AppDatabase.java ---
+package com.printxpress.data.db;
+
+import android.content.Context;
+import androidx.annotation.NonNull;
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import com.printxpress.R;
+import com.printxpress.data.entity.Address;
+import com.printxpress.data.entity.Category;
+import com.printxpress.data.entity.Faq;
+import com.printxpress.data.entity.Notification;
+import com.printxpress.data.entity.Order;
+import com.printxpress.data.entity.OrderItem;
+import com.printxpress.data.entity.OrderStatusHistory;
+import com.printxpress.data.entity.Product;
+import com.printxpress.data.entity.ProductOption;
+import com.printxpress.data.entity.Promotion;
+import com.printxpress.data.entity.SampleDesign;
+import com.printxpress.data.entity.SavedDesign;
+import com.printxpress.data.entity.User;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+@Database(
+        entities = {
+                User.class, Address.class, Category.class, Product.class,
+                ProductOption.class, Order.class, OrderItem.class,
+                OrderStatusHistory.class, SavedDesign.class, Notification.class,
+                Promotion.class, Faq.class, SampleDesign.class
+        },
+        version = 1,
+        exportSchema = false
+)
+public abstract class AppDatabase extends RoomDatabase {
+
+    public abstract UserDao userDao();
+    public abstract CatalogDao catalogDao();
+    public abstract OrderDao orderDao();
+    public abstract CommonDao commonDao();
+
+    private static volatile AppDatabase INSTANCE;
+    private static final int NUMBER_OF_THREADS = 4;
+    public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+
+    public static AppDatabase getDatabase(final Context context) {
+        if (INSTANCE == null) {
+            synchronized (AppDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(
+                                    context.getApplicationContext(),
+                                    AppDatabase.class,
+                                    "printxpress_database"
+                            )
+                            .addCallback(sRoomDatabaseCallback)
+                            .build();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
+    private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            databaseWriteExecutor.execute(() -> {
+                if (INSTANCE == null) return;
+
+                CatalogDao catalogDao = INSTANCE.catalogDao();
+                CommonDao commonDao = INSTANCE.commonDao();
+
+                // 1. Seed Categories
+                Category catCards = new Category("Business Cards", android.R.drawable.ic_menu_agenda);
+                Category catFlyers = new Category("Flyers & Brochures", android.R.drawable.ic_menu_gallery);
+                Category catTshirts = new Category("Custom Apparel", android.R.drawable.ic_menu_share);
+                Category catBanners = new Category("Banners & Signs", android.R.drawable.ic_menu_view);
+
+                long[] catIds = catalogDao.insertCategories(catCards, catFlyers, catTshirts, catBanners);
+
+                // 2. Seed Products
+                Product p1 = new Product(catIds[0], "Standard Business Cards", "Premium cardstock with sharp print quality.", 1500.00, android.R.drawable.ic_menu_agenda, "350gsm Matte Artboard", "85x55mm");
+                Product p2 = new Product(catIds[1], "A4 Promotional Flyers", "Full-color gloss flyers for mass distribution.", 3500.00, android.R.drawable.ic_menu_gallery, "150gsm Gloss Art Paper", "A4");
+                Product p3 = new Product(catIds[2], "Custom Printed T-Shirt", "100% combed cotton with screen or DTG print.", 2200.00, android.R.drawable.ic_menu_share, "100% Cotton", "S, M, L, XL");
+
+                long[] prodIds = catalogDao.insertProducts(p1, p2, p3);
+
+                // 3. Seed Product Options
+                catalogDao.insertOptions(
+                        new ProductOption(prodIds[0], "Finish", "Matte Lamination", 300.00),
+                        new ProductOption(prodIds[0], "Finish", "Gloss Lamination", 300.00),
+                        new ProductOption(prodIds[0], "Corners", "Rounded Corners", 200.00),
+                        new ProductOption(prodIds[1], "Paper Type", "150gsm Gloss", 0.00),
+                        new ProductOption(prodIds[1], "Paper Type", "250gsm Premium", 800.00),
+                        new ProductOption(prodIds[2], "Size", "Medium (M)", 0.00),
+                        new ProductOption(prodIds[2], "Size", "Extra Large (XL)", 200.00)
+                );
+
+                // 4. Seed FAQs
+                commonDao.insertFaqs(
+                        new Faq("What is the standard turnaround time?", "Standard printing takes 2-3 business days. Rush orders can be completed in 24 hours."),
+                        new Faq("What file formats do you accept for design uploads?", "We accept PDF, PNG, JPG, and AI formats with a minimum resolution of 300 DPI."),
+                        new Faq("Can I collect my order in person?", "Yes, select 'Store Pickup' during checkout to pick up your order directly from our print studio.")
+                );
+
+                // 5. Seed Promotions
+                long now = System.currentTimeMillis();
+                long oneMonth = 30L * 24 * 60 * 60 * 1000;
+                commonDao.insertPromotions(
+                        new Promotion("First Order Special", "Get 15% off your very first order with PrintXpress!", 15.0, 1, now, now + oneMonth),
+                        new Promotion("Bulk Order Discount", "Save 25% when ordering 500 units or more.", 25.0, 500, now, now + oneMonth)
+                );
+
+                // 6. Seed Sample Designs
+                catalogDao.insertSampleDesigns(
+                        new SampleDesign(catIds[0], "Minimalist Corporate Card", android.R.drawable.ic_menu_agenda),
+                        new SampleDesign(catIds[0], "Bold Geometric Card", android.R.drawable.ic_menu_agenda),
+                        new SampleDesign(catIds[1], "Event Showcase Flyer", android.R.drawable.ic_menu_gallery)
+                );
+            });
+        }
+    };
+}

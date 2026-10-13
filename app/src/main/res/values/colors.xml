@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand Primary Colors -->
+    <color name="primary">#172554</color>
+    <color name="primary_variant">#0F172A</color>
+    <color name="primary_royal">#2563EB</color>
+
+    <!-- Accent Colors -->
+    <color name="secondary">#EA580C</color>
+    <color name="secondary_variant">#C2410C</color>
+    <color name="accent_pink">#EC4899</color>
+    <color name="accent_cyan">#06B6D4</color>
+
+    <!-- Order Status Colors -->
+    <color name="status_placed">#2563EB</color>
+    <color name="status_processing">#D97706</color>
+    <color name="status_printing">#7C3AED</color>
+    <color name="status_ready">#0D9488</color>
+    <color name="status_completed">#16A34A</color>
+    <color name="status_cancelled">#DC2626</color>
+
+    <!-- Neutrals & Surfaces -->
+    <color name="background">#F8FAFC</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="white">#FFFFFF</color>
+    <color name="border">#E2E8F0</color>
+    <color name="card_stroke">#E2E8F0</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
+
+    <!-- Category Icon Badge Tints -->
+    <color name="badge_orange">#FFEDD5</color>
+    <color name="badge_blue">#DBEAFE</color>
+    <color name="badge_green">#DCFCE7</color>
+    <color name="badge_pink">#FCE7F3</color>
+    <color name="badge_purple">#F3E8FF</color>
+    <color name="badge_teal">#CCFBF1</color>
+    <color name="badge_yellow">#FEF9C3</color>
+</resources>
