@@ -1,4 +1,4 @@
-name: Build and Release APK
+name: Build Android APK
 
 on:
   push:
@@ -25,12 +25,9 @@ jobs:
     - name: Build debug APK
       run: ./gradlew assembleDebug
 
-    - name: Create Release and Upload APK
-      uses: softprops/action-gh-release@v2
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
       with:
-        tag_name: v1.0.${{ github.run_number }}
-        name: Release v1.0.${{ github.run_number }}
-        files: app/build/outputs/apk/debug/app-debug.apk
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: app-debug
+        path: app/build/outputs/apk/debug/app-debug.apk
         
