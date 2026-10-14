@@ -40,10 +40,34 @@ public class TemplateAdapter extends RecyclerView.Adapter<TemplateAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         SampleDesign design = templates.get(position);
         holder.tvTitle.setText(design.title);
-        holder.ivThumb.setImageResource(design.imageRes);
+        holder.ivThumb.setImageResource(getDesignDrawableRes(design));
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) listener.onTemplateClick(design);
         });
+    }
+
+    private int getDesignDrawableRes(SampleDesign design) {
+        if (design.imageRes > 0 && design.imageRes != android.R.drawable.ic_menu_agenda
+                && design.imageRes != android.R.drawable.ic_menu_edit
+                && design.imageRes != android.R.drawable.ic_menu_gallery
+                && design.imageRes != android.R.drawable.ic_menu_view
+                && design.imageRes != android.R.drawable.ic_menu_manage
+                && design.imageRes != android.R.drawable.ic_menu_compass) {
+            return design.imageRes;
+        }
+
+        switch ((int) design.categoryId) {
+            case 1: return R.drawable.ic_cat_business_card;
+            case 2: return R.drawable.ic_cat_flyer;
+            case 3: return R.drawable.ic_cat_poster;
+            case 4: return R.drawable.ic_cat_banner;
+            case 5: return R.drawable.ic_cat_sticker;
+            case 6: return R.drawable.ic_cat_mug;
+            case 7: return R.drawable.ic_cat_tshirt;
+            case 8: return R.drawable.ic_cat_brochure;
+            case 9: return R.drawable.ic_cat_calendar;
+            default: return R.drawable.ic_cat_custom;
+        }
     }
 
     @Override

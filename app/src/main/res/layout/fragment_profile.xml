@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,24 +12,13 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="My Profile"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="16dp"/>
-
-        <!-- Profile Card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="16dp"
-            app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/surface"
-            app:strokeWidth="0dp">
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#172554">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,50 +29,50 @@
 
                 <ImageView
                     android:id="@+id/ivProfileAvatar"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@android:drawable/ic_menu_camera"
-                    android:background="@drawable/selection_border"
-                    android:padding="4dp"
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
+                    android:src="@drawable/ic_profile"
+                    android:background="@drawable/bg_order_gradient"
+                    android:padding="3dp"
                     android:scaleType="centerCrop"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginBottom="6dp"
                     android:contentDescription="Profile avatar"/>
 
                 <TextView
                     android:id="@+id/tvChangeDpPrompt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tap to change photo 📷"
+                    android:text="Tap to Change Photo"
                     android:textSize="12sp"
-                    android:textColor="@color/primary"
-                    android:layout_marginBottom="10dp"/>
+                    android:textColor="#38BDF8"
+                    android:layout_marginBottom="12dp"/>
 
                 <TextView
                     android:id="@+id/tvUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loading..."
-                    android:textSize="20sp"
+                    android:text="John Doe"
+                    android:textSize="22sp"
                     android:textStyle="bold"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@android:color/white"
                     android:layout_marginBottom="4dp"/>
 
                 <TextView
                     android:id="@+id/tvUserEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="14sp"
-                    android:textColor="@color/text_secondary"
+                    android:text="john.doe@example.com"
+                    android:textSize="13sp"
+                    android:textColor="#94A3B8"
                     android:layout_marginBottom="2dp"/>
 
                 <TextView
                     android:id="@+id/tvUserPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="14sp"
-                    android:textColor="@color/text_secondary"
+                    android:text="+94 77 123 4567"
+                    android:textSize="13sp"
+                    android:textColor="#94A3B8"
                     android:layout_marginBottom="16dp"/>
 
                 <LinearLayout
@@ -91,77 +80,165 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnEditProfile"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:text="Edit Profile"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="10dp"
+                        android:backgroundTint="#EA580C"
                         android:layout_marginEnd="8dp"/>
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnChangePassword"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Change Password"/>
+                        android:layout_height="40dp"
+                        android:text="Change Password"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/white"
+                        app:strokeColor="@android:color/white"
+                        app:cornerRadius="10dp"/>
 
                 </LinearLayout>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Account Actions -->
-        <Button
-            android:id="@+id/btnAddresses"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Saved Addresses"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/surface"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/card_stroke">
 
-        <Button
-            android:id="@+id/btnSavedDesigns"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Saved Designs / Gallery"
-            android:layout_marginBottom="8dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
 
-        <Button
-            android:id="@+id/btnNotifications"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Notifications Centre"
-            android:layout_marginBottom="16dp"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddresses"
+                    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Saved Addresses"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    android:gravity="start|center_vertical"
+                    app:icon="@android:drawable/ic_menu_myplaces"
+                    app:iconTint="@color/secondary"/>
 
-        <!-- More Section -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="More"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="8dp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/border"/>
 
-        <Button
-            android:id="@+id/btnPaymentMethods"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Payment Methods"
-            android:layout_marginBottom="8dp"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSavedDesigns"
+                    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="My Designs / Saved Artworks"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    android:gravity="start|center_vertical"
+                    app:icon="@android:drawable/ic_menu_gallery"
+                    app:iconTint="@color/secondary"/>
 
-        <Button
-            android:id="@+id/btnAboutUs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="About PrintXpress"
-            android:layout_marginBottom="16dp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/border"/>
 
-        <Button
-            android:id="@+id/btnLogout"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNotifications"
+                    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Notifications Centre"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    android:gravity="start|center_vertical"
+                    app:icon="@drawable/ic_bell"
+                    app:iconTint="@color/secondary"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Logout"
-            android:backgroundTint="#EF4444"/>
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/surface"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/card_stroke">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPaymentMethods"
+                    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Payment Methods"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    android:gravity="start|center_vertical"
+                    app:icon="@android:drawable/ic_menu_manage"
+                    app:iconTint="@color/secondary"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/border"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAboutUs"
+                    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="About PrintXpress Studio"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    android:gravity="start|center_vertical"
+                    app:icon="@android:drawable/ic_menu_info_details"
+                    app:iconTint="@color/secondary"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/border"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLogout"
+                    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Sign Out"
+                    android:textSize="14sp"
+                    android:textColor="#DC2626"
+                    android:gravity="start|center_vertical"
+                    app:icon="@android:drawable/ic_menu_close_clear_cancel"
+                    app:iconTint="#DC2626"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
-</ScrollView>
+
+</androidx.core.widget.NestedScrollView>

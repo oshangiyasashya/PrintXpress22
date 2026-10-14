@@ -235,7 +235,7 @@ public class UniversalTemplateEditorFragment extends Fragment {
         });
         view.findViewById(R.id.btnLogoPrint).setOnClickListener(v -> {
             uploadedImagePath = "";
-            prevLogo.setImageResource(android.R.drawable.ic_menu_gallery);
+            prevLogo.setImageResource(R.drawable.ic_launcher_foreground_1024);
         });
 
         MaterialButton btnSaveAndOrder = view.findViewById(R.id.btnSaveAndOrder);
@@ -245,18 +245,163 @@ public class UniversalTemplateEditorFragment extends Fragment {
     private void buildDynamicFields() {
         containerDynamicFields.removeAllViews();
         fieldHolders.clear();
-        int yOffset = 40;
+
+        float density = getResources().getDisplayMetrics().density;
+        int cat = (int) categoryId;
+
+        if (prevLogo != null) {
+            prevLogo.setImageResource(R.drawable.ic_launcher_foreground_1024);
+            cardCanvasPreview.post(() -> {
+                int cardWidth = cardCanvasPreview.getWidth();
+                int cardHeight = cardCanvasPreview.getHeight();
+                int logoWidth = prevLogo.getWidth() > 0 ? prevLogo.getWidth() : (int) (48 * density);
+
+                if (cardWidth > 0) {
+                    if (cat == 2 || cat == 5 || cat == 7) {
+                        prevLogo.setX((cardWidth - logoWidth) / 2f);
+                        prevLogo.setY(16f * density);
+                    } else if (cat == 6) {
+                        prevLogo.setX(20f * density);
+                        prevLogo.setY((cardHeight - logoWidth) / 2f);
+                    } else if (cat == 3) {
+                        prevLogo.setX(16f * density);
+                        prevLogo.setY(16f * density);
+                    } else {
+                        prevLogo.setX(cardWidth - logoWidth - (16 * density));
+                        prevLogo.setY(16f * density);
+                    }
+                }
+            });
+        }
+
+        float currentYDp = 16f;
 
         for (int i = 0; i < templateLayout.fields.size(); i++) {
             TemplateField field = templateLayout.fields.get(i);
             TextView tvPreview = new TextView(getContext());
             tvPreview.setText(field.defaultValue);
-            tvPreview.setTextColor(Color.WHITE);
-            tvPreview.setTextSize(i == 0 ? 18f : 14f);
-            if (i == 0) tvPreview.setTypeface(null, Typeface.BOLD);
-            tvPreview.setX(24f);
-            tvPreview.setY(yOffset);
-            yOffset += 45;
+
+            float xDp = 16f;
+
+            if (cat == 2) {
+                tvPreview.setGravity(Gravity.CENTER_HORIZONTAL);
+                if (i == 0) {
+                    tvPreview.setTextColor(Color.parseColor("#F59E0B"));
+                    tvPreview.setTextSize(22f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                    currentYDp = 80f;
+                } else if (i == 1) {
+                    tvPreview.setTextColor(Color.WHITE);
+                    tvPreview.setTextSize(13f);
+                    tvPreview.setTypeface(null, Typeface.ITALIC);
+                    currentYDp += 32f;
+                } else if (i == 2) {
+                    tvPreview.setTextColor(Color.parseColor("#38BDF8"));
+                    tvPreview.setTextSize(12f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                    currentYDp += 32f;
+                } else {
+                    tvPreview.setTextColor(Color.parseColor("#E2E8F0"));
+                    tvPreview.setTextSize(11f);
+                    currentYDp += 22f;
+                }
+                xDp = 16f;
+
+            } else if (cat == 3) {
+                xDp = 80f;
+                if (i == 0) {
+                    tvPreview.setTextColor(Color.WHITE);
+                    tvPreview.setTextSize(18f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                    currentYDp = 14f;
+                } else if (i == 1) {
+                    tvPreview.setTextColor(Color.parseColor("#F97316"));
+                    tvPreview.setTextSize(24f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                    currentYDp += 28f;
+                } else if (i == 2) {
+                    tvPreview.setTextColor(Color.parseColor("#38BDF8"));
+                    tvPreview.setTextSize(12f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                    currentYDp += 34f;
+                } else {
+                    tvPreview.setTextColor(Color.parseColor("#E2E8F0"));
+                    tvPreview.setTextSize(11f);
+                    currentYDp += 20f;
+                }
+
+            } else if (cat == 5) {
+                tvPreview.setGravity(Gravity.CENTER_HORIZONTAL);
+                if (i == 0) {
+                    tvPreview.setTextColor(Color.WHITE);
+                    tvPreview.setTextSize(18f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                    currentYDp = 85f;
+                } else {
+                    tvPreview.setTextColor(Color.parseColor("#38BDF8"));
+                    tvPreview.setTextSize(12f);
+                    currentYDp += 28f;
+                }
+                xDp = 16f;
+
+            } else if (cat == 6) {
+                xDp = 80f;
+                if (i == 0) {
+                    tvPreview.setTextColor(Color.parseColor("#FBBF24"));
+                    tvPreview.setTextSize(22f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                    currentYDp = 36f;
+                } else {
+                    tvPreview.setTextColor(Color.WHITE);
+                    tvPreview.setTextSize(13f);
+                    tvPreview.setTypeface(null, Typeface.ITALIC);
+                    currentYDp += 32f;
+                }
+
+            } else if (cat == 7) {
+                tvPreview.setGravity(Gravity.CENTER_HORIZONTAL);
+                if (i == 0) {
+                    tvPreview.setTextColor(Color.WHITE);
+                    tvPreview.setTextSize(24f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                    currentYDp = 95f;
+                } else {
+                    tvPreview.setTextColor(Color.parseColor("#EA580C"));
+                    tvPreview.setTextSize(14f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                    currentYDp += 36f;
+                }
+                xDp = 16f;
+
+            } else {
+                xDp = 16f;
+                if (i == 0) {
+                    tvPreview.setTextColor(Color.WHITE);
+                    tvPreview.setTextSize(18f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                    currentYDp = 16f;
+                } else if (i == 1) {
+                    tvPreview.setTextColor(Color.parseColor("#38BDF8"));
+                    tvPreview.setTextSize(12f);
+                    currentYDp += 28f;
+                } else if (i == 2) {
+                    tvPreview.setTextColor(Color.parseColor("#94A3B8"));
+                    tvPreview.setTextSize(11f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                    currentYDp += 22f;
+                } else {
+                    tvPreview.setTextColor(Color.parseColor("#E2E8F0"));
+                    tvPreview.setTextSize(10f);
+                    if (i == 3) {
+                        currentYDp += 30f;
+                    } else {
+                        currentYDp += 18f;
+                    }
+                }
+            }
+
+            tvPreview.setX(xDp * density);
+            tvPreview.setY(currentYDp * density);
 
             canvasRelativeLayout.addView(tvPreview);
             setupInteractiveElement(tvPreview, field.label);

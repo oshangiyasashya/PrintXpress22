@@ -3,39 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#172554">
+    android:background="@color/splash_bg">
 
     <LinearLayout
         android:id="@+id/layoutSplashContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:padding="24dp">
 
         <ImageView
             android:id="@+id/ivSplashLogo"
             android:layout_width="140dp"
             android:layout_height="140dp"
-            android:src="@drawable/printxpress_logo"
-            android:contentDescription="PrintXpress Logo" />
+            android:src="@drawable/ic_launcher_foreground_1024"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/cd_splash_logo"
+            android:layout_marginBottom="24dp" />
 
         <TextView
             android:id="@+id/tvSplashTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PrintXpress"
-            android:textSize="32sp"
+            android:text="@string/app_name"
+            android:textSize="28sp"
             android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="16dp" />
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginBottom="8dp" />
 
         <TextView
+            android:id="@+id/tvSplashSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Premium Digital &amp; Custom Merchandise Studio"
+            android:text="@string/splash_subtitle"
             android:textSize="14sp"
-            android:textColor="#94A3B8"
-            android:layout_marginTop="6dp" />
+            android:textColor="@color/splash_subtitle"
+            android:gravity="center"
+            android:maxLines="2" />
 
     </LinearLayout>
 

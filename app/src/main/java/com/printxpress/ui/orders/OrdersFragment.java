@@ -1,5 +1,6 @@
 package com.printxpress.ui.orders;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,15 +57,15 @@ public class OrdersFragment extends Fragment {
                 if (tvOrderNumber != null) tvOrderNumber.setText("Order #" + order.id);
                 if (tvOrderBadgeStatus != null) {
                     tvOrderBadgeStatus.setText(order.status);
-                    if ("PENDING".equalsIgnoreCase(order.status)) {
-                        tvOrderBadgeStatus.setBackgroundColor(android.graphics.Color.parseColor("#F59E0B"));
-                    } else if ("PROCESSING".equalsIgnoreCase(order.status) || "PRINTING".equalsIgnoreCase(order.status)) {
-                        tvOrderBadgeStatus.setBackgroundColor(android.graphics.Color.parseColor("#2563EB"));
-                    } else if ("DELIVERED".equalsIgnoreCase(order.status) || "READY".equalsIgnoreCase(order.status) || "COMPLETED".equalsIgnoreCase(order.status)) {
-                        tvOrderBadgeStatus.setBackgroundColor(android.graphics.Color.parseColor("#10B981"));
-                    } else if ("CANCELLED".equalsIgnoreCase(order.status)) {
-                        tvOrderBadgeStatus.setBackgroundColor(android.graphics.Color.parseColor("#EF4444"));
-                    }
+                    int color = Color.parseColor("#2563EB"); // Placed / Default
+                    if ("PENDING".equalsIgnoreCase(order.status)) color = Color.parseColor("#D97706");
+                    else if ("PROCESSING".equalsIgnoreCase(order.status)) color = Color.parseColor("#D97706");
+                    else if ("PRINTING".equalsIgnoreCase(order.status)) color = Color.parseColor("#7C3AED");
+                    else if ("READY".equalsIgnoreCase(order.status)) color = Color.parseColor("#0D9488");
+                    else if ("DELIVERED".equalsIgnoreCase(order.status) || "COMPLETED".equalsIgnoreCase(order.status)) color = Color.parseColor("#16A34A");
+                    else if ("CANCELLED".equalsIgnoreCase(order.status)) color = Color.parseColor("#DC2626");
+
+                    tvOrderBadgeStatus.setBackgroundColor(color);
                 }
                 if (tvOrderTrackingCode != null) {
                     tvOrderTrackingCode.setText("Tracking: " + (order.trackingNumber != null ? order.trackingNumber : "PX-" + order.id));

@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:background="@color/background">
 
-    <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,13 +27,12 @@
             android:id="@+id/tvCartSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Items configured and ready for production"
+            android:text="Configured items ready for production"
             android:textSize="13sp"
             android:textColor="@color/text_secondary"/>
 
     </LinearLayout>
 
-    <!-- Cart Items List -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCartItems"
         android:layout_width="match_parent"
@@ -43,7 +41,6 @@
         android:clipToPadding="false"
         android:padding="16dp"/>
 
-    <!-- Empty State -->
     <LinearLayout
         android:id="@+id/layoutEmptyCart"
         android:layout_width="match_parent"
@@ -55,10 +52,11 @@
         android:visibility="gone">
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:src="@drawable/ic_cart"
-            android:tint="@color/text_secondary"
+            app:tint="@color/text_secondary"
+            android:contentDescription="Empty Cart"
             android:layout_marginBottom="16dp"/>
 
         <TextView
@@ -73,7 +71,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Configure custom templates or browse products to add items to your cart."
+            android:text="Browse our catalog or select a template to add items to your cart."
             android:textSize="13sp"
             android:textColor="@color/text_secondary"
             android:gravity="center"
@@ -82,13 +80,14 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnExploreProductsEmpty"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:text="Explore Products"
-            app:cornerRadius="10dp"/>
+            android:textStyle="bold"
+            app:cornerRadius="12dp"
+            android:backgroundTint="#EA580C"/>
 
     </LinearLayout>
 
-    <!-- Bottom Checkout Card -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardCheckoutBar"
         android:layout_width="match_parent"
@@ -127,7 +126,7 @@
                     android:text="Rs. 0.00"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/primary"/>
+                    android:textColor="#059669"/>
 
             </LinearLayout>
 
@@ -142,7 +141,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="52dp"
                     android:text="Clear"
-                    android:textColor="#EF4444"
+                    android:textColor="#DC2626"
                     android:textSize="13sp"
                     android:layout_marginEnd="8dp"/>
 
@@ -154,7 +153,8 @@
                     android:text="Proceed to Checkout →"
                     android:textStyle="bold"
                     android:textSize="15sp"
-                    app:cornerRadius="10dp"/>
+                    app:cornerRadius="12dp"
+                    android:backgroundTint="#EA580C"/>
 
             </LinearLayout>
 

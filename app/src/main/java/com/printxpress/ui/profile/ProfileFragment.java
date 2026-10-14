@@ -81,7 +81,7 @@ public class ProfileFragment extends Fragment {
         Button btnAboutUs = view.findViewById(R.id.btnAboutUs);
         Button btnLogout = view.findViewById(R.id.btnLogout);
 
-        View.OnClickListener pickDpListener = v -> dpPickerLauncher.launch("image/*");
+        View.OnClickListener pickDpListener = v -> showPhotoOptionsDialog();
         if (ivProfileAvatar != null) ivProfileAvatar.setOnClickListener(pickDpListener);
         if (tvChangeDpPrompt != null) tvChangeDpPrompt.setOnClickListener(pickDpListener);
 
@@ -94,6 +94,8 @@ public class ProfileFragment extends Fragment {
 
                 if (user.profileImageUri != null && !user.profileImageUri.isEmpty() && ivProfileAvatar != null) {
                     ImageLoader.getInstance().load(user.profileImageUri, ivProfileAvatar);
+                } else if (ivProfileAvatar != null) {
+                    ivProfileAvatar.setImageResource(R.drawable.ic_profile);
                 }
             }
         });
@@ -139,6 +141,31 @@ public class ProfileFragment extends Fragment {
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                 .show();
         });
+    }
+
+    private void showPhotoOptionsDialog() {
+        if (currentUser == null) return;
+        String[] options;
+        if (!TextUtils.isEmpty(currentUser.profileImageUri)) {
+            options = new String[]{"Upload / Change Photo", "Remove Photo"};
+        } else {
+            options = new String[]{"Upload Photo"};
+        }
+
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Profile Photo Options")
+                .setItems(options, (dialog, which) -> {
+                    if (which == 0) {
+                        dpPickerLauncher.launch("image/*");
+                    } else if (which == 1) {
+                        viewModel.removeAvatar(currentUser);
+                        if (ivProfileAvatar != null) {
+                            ivProfileAvatar.setImageResource(R.drawable.ic_profile);
+                        }
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 
     private void saveProfileImage(Uri uri) {

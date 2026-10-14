@@ -11,6 +11,10 @@
     <color name="accent_pink">#EC4899</color>
     <color name="accent_cyan">#06B6D4</color>
 
+    <!-- Splash Colors -->
+    <color name="splash_bg">#18265A</color>
+    <color name="splash_subtitle">#A9B4D6</color>
+
     <!-- Order Status Colors -->
     <color name="status_placed">#2563EB</color>
     <color name="status_processing">#D97706</color>

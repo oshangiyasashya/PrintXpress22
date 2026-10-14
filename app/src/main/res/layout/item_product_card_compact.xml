@@ -2,35 +2,43 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="160dp"
-    android:layout_height="wrap_content"
+    android:layout_height="184dp"
     android:layout_marginEnd="12dp"
     android:layout_marginBottom="4dp"
-    app:cardCornerRadius="14dp"
-    app:cardElevation="2dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="3dp"
     app:cardBackgroundColor="@color/surface"
     app:strokeWidth="1dp"
     app:strokeColor="@color/card_stroke">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="12dp">
 
-        <ImageView
-            android:id="@+id/ivProductThumb"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:src="@android:drawable/ic_menu_agenda"
-            android:scaleType="centerInside"
-            android:background="@drawable/ic_launcher_background"
-            android:layout_marginBottom="8dp"
-            android:contentDescription="Product image"/>
+            android:layout_height="96dp"
+            android:background="@drawable/selection_border"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:id="@+id/ivProductThumb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_cat_business_card"
+                android:scaleType="fitCenter"
+                android:padding="12dp"
+                android:contentDescription="Product image"/>
+
+        </FrameLayout>
 
         <TextView
             android:id="@+id/tvProductName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:text="Business Cards"
             android:textSize="13sp"
             android:textStyle="bold"
@@ -46,7 +54,7 @@
             android:text="From Rs. 1500"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@color/primary"/>
+            android:textColor="#059669"/>
 
     </LinearLayout>
 

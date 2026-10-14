@@ -140,6 +140,21 @@ public class ProfileViewModel extends AndroidViewModel {
         });
     }
 
+    public void removeAvatar(User user) {
+        user.profileImageUri = "";
+        userRepository.updateProfile(user, new UserRepository.ActionCallback() {
+            @Override
+            public void onSuccess() {
+                actionMessage.postValue("Profile photo removed!");
+            }
+
+            @Override
+            public void onError(String message) {
+                actionMessage.postValue("Failed to remove photo: " + message);
+            }
+        });
+    }
+
     public void deleteAccount(long userId) {
         userRepository.softDeleteUser(userId, new UserRepository.ActionCallback() {
             @Override

@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Top Toolbar: Title & Save Button -->
+        <!-- Top Header: Title & Save Button -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,23 +25,24 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Design Studio"
-                android:textSize="20sp"
+                android:text="Customize Template"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSaveAndOrder"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:text="Save &amp; Order"
-                android:textSize="14sp"
-                app:cornerRadius="12dp"
-                android:backgroundTint="@color/primary"/>
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                android:backgroundTint="#EA580C"/>
 
         </LinearLayout>
 
-        <!-- Floating Toolbar for Selected Element -->
+        <!-- Floating Action Bar for Selected Element -->
         <LinearLayout
             android:id="@+id/floatingToolbar"
             android:layout_width="match_parent"
@@ -51,43 +52,52 @@
             android:background="@color/surface"
             android:padding="8dp"
             android:visibility="gone"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="12dp">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnToolDelete"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:text="Delete"
-                android:textSize="12sp"
-                android:backgroundTint="#EF4444"
+                android:textSize="11sp"
+                android:textColor="#DC2626"
+                app:strokeColor="#DC2626"
+                app:cornerRadius="8dp"
                 android:layout_marginEnd="8dp"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnToolBringFront"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:text="Front"
-                android:textSize="12sp"
+                android:text="Bring to Front"
+                android:textSize="11sp"
+                app:cornerRadius="8dp"
                 android:layout_marginEnd="8dp"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnToolCenter"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:text="Center"
-                android:textSize="12sp"/>
+                android:text="Center Align"
+                android:textSize="11sp"
+                app:cornerRadius="8dp"/>
 
         </LinearLayout>
 
-        <!-- Live Visual Preview Canvas (takes ~60% visual focus) -->
+        <!-- Live Visual Preview Canvas -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardCanvasPreview"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="220dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
-            app:cardBackgroundColor="#1E3A8A"
+            app:cardBackgroundColor="#172554"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/card_stroke"
             android:clipChildren="false"
             android:clipToPadding="false">
 
@@ -105,23 +115,23 @@
                     android:layout_width="2dp"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    android:background="@color/secondary"
+                    android:background="#EA580C"
                     android:visibility="gone"/>
 
                 <ImageView
                     android:id="@+id/prevLogo"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@android:drawable/ic_menu_camera"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_launcher_foreground_1024"
                     android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
                     android:contentDescription="Logo preview"/>
 
             </RelativeLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Bottom Sheet Tabs / Style Inspector Panel -->
+        <!-- Style Inspector Panel -->
         <LinearLayout
             android:id="@+id/styleInspectorPanel"
             android:layout_width="match_parent"
@@ -136,8 +146,8 @@
                 android:id="@+id/tvInspectorTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Styling"
-                android:textSize="16sp"
+                android:text="Element Styling"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/primary"
                 android:layout_marginBottom="8dp"/>
@@ -149,7 +159,6 @@
                 android:textSize="12sp"
                 android:textColor="@color/text_secondary"/>
 
-            <!-- Material Slider for Font Size -->
             <com.google.android.material.slider.Slider
                 android:id="@+id/materialSliderFontSize"
                 android:layout_width="match_parent"
@@ -159,7 +168,6 @@
                 android:value="18"
                 android:layout_marginBottom="8dp"/>
 
-            <!-- Font Family Chips -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -189,7 +197,6 @@
                 </com.google.android.material.chip.ChipGroup>
             </HorizontalScrollView>
 
-            <!-- Style & Icon Alignment Toggles -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -197,24 +204,24 @@
                 android:layout_marginBottom="8dp"
                 android:gravity="center_vertical">
 
-                <Button android:id="@+id/btnStyleBold" android:layout_width="0dp" android:layout_weight="1" android:layout_height="36dp" android:text="B" android:textStyle="bold" android:layout_marginEnd="4dp"/>
-                <Button android:id="@+id/btnStyleItalic" android:layout_width="0dp" android:layout_weight="1" android:layout_height="36dp" android:text="I" android:textStyle="italic" android:layout_marginEnd="4dp"/>
-                <Button android:id="@+id/btnStyleUnderline" android:layout_width="0dp" android:layout_weight="1" android:layout_height="36dp" android:text="U" android:layout_marginEnd="8dp"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btnStyleBold" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="0dp" android:layout_weight="1" android:layout_height="36dp" android:text="B" android:textStyle="bold" android:layout_marginEnd="4dp"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btnStyleItalic" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="0dp" android:layout_weight="1" android:layout_height="36dp" android:text="I" android:textStyle="italic" android:layout_marginEnd="4dp"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btnStyleUnderline" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="0dp" android:layout_weight="1" android:layout_height="36dp" android:text="U" android:layout_marginEnd="8dp"/>
 
-                <Button android:id="@+id/btnAlignLeft" android:layout_width="0dp" android:layout_weight="1" android:layout_height="36dp" android:text="⫷" android:textSize="14sp" android:layout_marginEnd="4dp"/>
-                <Button android:id="@+id/btnAlignCenter" android:layout_width="0dp" android:layout_weight="1" android:layout_height="36dp" android:text="⫼" android:textSize="14sp" android:layout_marginEnd="4dp"/>
-                <Button android:id="@+id/btnAlignRight" android:layout_width="0dp" android:layout_weight="1" android:layout_height="36dp" android:text="⫸" android:textSize="14sp"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btnAlignLeft" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="0dp" android:layout_weight="1" android:layout_height="36dp" android:text="Left" android:textSize="11sp" android:layout_marginEnd="4dp"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btnAlignCenter" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="0dp" android:layout_weight="1" android:layout_height="36dp" android:text="Center" android:textSize="11sp" android:layout_marginEnd="4dp"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btnAlignRight" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="0dp" android:layout_weight="1" android:layout_height="36dp" android:text="Right" android:textSize="11sp"/>
 
             </LinearLayout>
 
-            <!-- Color Picker Trigger (JavaFX Style Picker) -->
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnOpenColorPicker"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
-                android:text="🎨 Open Color Picker (Palette &amp; Custom)"
+                android:text="Text Color Palette"
                 android:textSize="12sp"
-                android:backgroundTint="@color/primary"/>
+                app:cornerRadius="8dp"
+                android:backgroundTint="#2563EB"/>
 
         </LinearLayout>
 
@@ -232,52 +239,69 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="8dp">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnColorBlue"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="48dp"
+                android:layout_height="40dp"
                 android:text="Navy"
-                android:backgroundTint="#1E3A8A"
+                android:textSize="11sp"
+                android:padding="0dp"
+                android:minWidth="0dp"
+                app:cornerRadius="8dp"
+                android:backgroundTint="#172554"
                 android:layout_marginEnd="4dp"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnColorBlack"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="48dp"
+                android:layout_height="40dp"
                 android:text="Dark"
+                android:textSize="11sp"
+                android:padding="0dp"
+                android:minWidth="0dp"
+                app:cornerRadius="8dp"
                 android:backgroundTint="#0F172A"
                 android:layout_marginEnd="4dp"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnColorRed"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="48dp"
+                android:layout_height="40dp"
                 android:text="Crimson"
+                android:textSize="11sp"
+                android:padding="0dp"
+                android:minWidth="0dp"
+                app:cornerRadius="8dp"
                 android:backgroundTint="#B91C1C"
                 android:layout_marginEnd="4dp"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnColorOrange"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="48dp"
+                android:layout_height="40dp"
                 android:text="Sunset"
+                android:textSize="11sp"
+                android:padding="0dp"
+                android:minWidth="0dp"
+                app:cornerRadius="8dp"
                 android:backgroundTint="#C2410C"/>
 
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCustomCanvasColor"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="🎨 Custom Canvas Color"
-            android:backgroundTint="#3B82F6"
-            android:textColor="@android:color/white"
+            android:layout_height="44dp"
+            android:text="Custom Canvas Color"
+            android:textSize="13sp"
+            app:cornerRadius="8dp"
             android:layout_marginBottom="16dp"/>
 
         <!-- Logo / Icon Selection Section -->
@@ -296,47 +320,55 @@
             android:orientation="horizontal"
             android:layout_marginBottom="8dp">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogoStar"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="40dp"
                 android:text="Star"
                 android:textSize="12sp"
+                app:cornerRadius="8dp"
                 android:layout_marginEnd="4dp"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogoCrown"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="40dp"
                 android:text="Crown"
                 android:textSize="12sp"
+                app:cornerRadius="8dp"
                 android:layout_marginEnd="4dp"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogoPrint"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="40dp"
-                android:text="Print"
-                android:textSize="12sp"/>
+                android:text="Print Mark"
+                android:textSize="12sp"
+                app:cornerRadius="8dp"/>
 
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnUploadCustomImage"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="Upload image"
+            android:text="Upload Image / Artwork"
             android:textSize="14sp"
-            android:backgroundTint="@color/secondary"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            android:backgroundTint="#EA580C"
             android:layout_marginBottom="12dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Logo / Image Scale / Size Adjustment:"
+            android:text="Logo / Image Scale Adjustment:"
             android:textSize="13sp"
             android:textColor="@color/text_secondary"
             android:layout_marginBottom="4dp"/>
@@ -355,25 +387,26 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="12dp">
 
             <TextView
                 android:id="@+id/tvTemplateSectionTitle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Template Specific Fields"
+                android:text="Template Fields"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAddTextBox"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:text="Add text box"
+                android:text="+ Add Text Box"
                 android:textSize="11sp"
-                android:backgroundTint="@color/primary"/>
+                app:cornerRadius="8dp"/>
 
         </LinearLayout>
 
@@ -385,4 +418,5 @@
             android:layout_marginBottom="24dp"/>
 
     </LinearLayout>
+
 </ScrollView>

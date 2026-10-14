@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- 1. Greeting Header & Search Bar -->
+        <!-- 1. Greeting Header & Action Icons (Cart, Bell, Avatar) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,25 +44,72 @@
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/ivNotificationBell"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_bell"
-                android:background="@drawable/selection_border"
-                android:padding="8dp"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardCartHeader"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
                 android:layout_marginEnd="8dp"
-                android:contentDescription="Notifications"/>
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFF7ED"
+                app:strokeWidth="1dp"
+                app:strokeColor="#FFEDD5">
 
-            <ImageView
-                android:id="@+id/ivProfileAvatar"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_profile"
-                android:background="@drawable/selection_border"
-                android:padding="8dp"
-                android:scaleType="centerCrop"
-                android:contentDescription="Profile avatar"/>
+                <ImageView
+                    android:id="@+id/ivCartIcon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_cart"
+                    app:tint="#EA580C"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="Cart"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardBellHeader"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#EFF6FF"
+                app:strokeWidth="1dp"
+                app:strokeColor="#DBEAFE">
+
+                <ImageView
+                    android:id="@+id/ivNotificationBell"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_bell"
+                    app:tint="#2563EB"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="Notifications"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardAvatarHeader"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/surface"
+                app:strokeWidth="1dp"
+                app:strokeColor="#EA580C">
+
+                <ImageView
+                    android:id="@+id/ivProfileAvatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_profile"
+                    android:scaleType="centerCrop"
+                    android:padding="2dp"
+                    android:contentDescription="Profile avatar"/>
+
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 

@@ -9,6 +9,9 @@
     <color name="accent_pink">#F472B6</color>
     <color name="accent_cyan">#22D3EE</color>
 
+    <color name="splash_bg">#18265A</color>
+    <color name="splash_subtitle">#A9B4D6</color>
+
     <color name="status_placed">#3B82F6</color>
     <color name="status_processing">#F59E0B</color>
     <color name="status_printing">#A855F7</color>

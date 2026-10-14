@@ -1,98 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:fillViewport="true">
+    android:orientation="vertical"
+    android:background="@color/background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="4dp">
 
         <TextView
             android:id="@+id/tvCategoryName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:text="All Products"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/text_primary"
             android:layout_marginBottom="12dp"/>
 
-        <!-- Category Filter Chips -->
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="12dp">
+
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipGroupCategories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:singleSelection="true"/>
+
         </HorizontalScrollView>
 
-        <!-- Quick Start Actions: Blank Canvas & Upload Design -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="24dp">
+            android:layout_marginBottom="12dp">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBlankCanvas"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="48dp"
-                android:text="➕ Blank Canvas"
+                android:layout_height="44dp"
+                android:text="Blank Canvas"
                 android:textSize="12sp"
-                android:backgroundTint="@color/primary"
-                android:layout_marginEnd="8dp"/>
+                app:icon="@android:drawable/ic_menu_add"
+                android:layout_marginEnd="6dp"
+                app:cornerRadius="10dp"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnUploadOwn"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="48dp"
-                android:text="📁 Upload Design"
+                android:layout_height="44dp"
+                android:text="Upload Artwork"
                 android:textSize="12sp"
-                android:backgroundTint="@color/secondary"/>
+                app:icon="@android:drawable/ic_menu_upload"
+                android:layout_marginStart="6dp"
+                app:cornerRadius="10dp"
+                android:backgroundTint="#EA580C"/>
 
         </LinearLayout>
 
-        <TextView
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayoutProducts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select a Category Template"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="12dp"/>
+            app:tabMode="fixed"
+            app:tabGravity="center"
+            app:tabIndicatorFullWidth="false"
+            app:tabPaddingStart="16dp"
+            app:tabPaddingEnd="16dp"
+            app:tabIndicatorColor="#EA580C"
+            app:tabSelectedTextColor="#EA580C"
+            app:tabTextColor="@color/text_secondary">
 
-        <!-- Templates Grid (2 columns) -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvTemplatesGrid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            android:layout_marginBottom="24dp"/>
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Products Catalog" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Available Products &amp; Services"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="12dp"/>
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Design Gallery" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvProducts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"/>
+            android:layout_height="match_parent"
+            android:padding="12dp"
+            android:clipToPadding="false"/>
 
-    </LinearLayout>
-</ScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTemplatesGrid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp"
+            android:clipToPadding="false"
+            android:visibility="gone"/>
+
+    </FrameLayout>
+
+</LinearLayout>

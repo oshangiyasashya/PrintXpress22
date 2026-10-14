@@ -1,6 +1,7 @@
 package com.printxpress;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 import com.printxpress.ui.admin.AdminDashboardActivity;
@@ -43,6 +45,13 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Seamless Status & Navigation Bar Colors
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.splash_bg));
+            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.splash_bg));
+        }
+
         setContentView(R.layout.activity_splash);
 
         sessionManager = new SessionManager(this);
@@ -52,12 +61,21 @@ public class SplashActivity extends AppCompatActivity {
         btnSkip = findViewById(R.id.btnSkipOnboarding);
         btnNext = findViewById(R.id.btnNextOnboarding);
 
+        // Gentle Fade-In & Scale Animation on Logo (700ms)
         ImageView logo = findViewById(R.id.ivSplashLogo);
         if (logo != null) {
             logo.setAlpha(0f);
-            logo.animate().alpha(1f).scaleX(1.1f).scaleY(1.1f).setDuration(800).start();
+            logo.setScaleX(0.8f);
+            logo.setScaleY(0.8f);
+            logo.animate()
+                    .alpha(1f)
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .setDuration(700)
+                    .start();
         }
 
+        // Navigate after ~2000ms delay
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             if (isFinishing()) return;
 
@@ -66,10 +84,15 @@ public class SplashActivity extends AppCompatActivity {
             } else {
                 proceedToApp();
             }
-        }, 1200);
+        }, 2000);
     }
 
     private void setupOnboarding() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.primary_variant));
+            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.background));
+        }
+
         layoutSplashContent.setVisibility(View.GONE);
         layoutOnboarding.setVisibility(View.VISIBLE);
 
@@ -77,7 +100,7 @@ public class SplashActivity extends AppCompatActivity {
         slides.add(new OnboardingSlide(
                 "Design Your Vision",
                 "Choose from hundreds of customizable templates or upload your own studio artworks seamlessly.",
-                R.drawable.printxpress_logo
+                R.drawable.ic_launcher_foreground_1024
         ));
         slides.add(new OnboardingSlide(
                 "High Precision Printing",

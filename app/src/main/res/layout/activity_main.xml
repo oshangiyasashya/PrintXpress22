@@ -13,14 +13,19 @@
         <!-- Top App Bar -->
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:elevation="2dp">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:background="#172554"
                 app:title="PrintXpress"
+                app:titleTextColor="@android:color/white"
+                app:subtitleTextColor="#94A3B8"
                 app:navigationIcon="@android:drawable/ic_menu_sort_by_size"
+                app:navigationIconTint="@android:color/white"
                 app:menu="@menu/top_app_bar_menu" />
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -54,6 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/drawer_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -10,16 +10,72 @@
         android:id="@+id/tabLayoutOrders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/surface"
         app:tabMode="scrollable"
-        app:tabIndicatorColor="@color/primary"
-        app:tabSelectedTextColor="@color/primary"
-        app:tabTextColor="@color/text_secondary"/>
+        app:tabIndicatorColor="#EA580C"
+        app:tabSelectedTextColor="#EA580C"
+        app:tabTextColor="@color/text_secondary"
+        app:elevation="2dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvOrders"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="16dp"/>
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvOrders"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:clipToPadding="false" />
+
+        <LinearLayout
+            android:id="@+id/layoutEmptyOrdersCustomer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_cat_brochure"
+                app:tint="@color/text_secondary"
+                android:contentDescription="Empty Orders"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Orders Here Yet"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                android:layout_marginBottom="6dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your placed print orders and tracking details will appear here."
+                android:textSize="13sp"
+                android:textColor="@color/text_secondary"
+                android:gravity="center"
+                android:layout_marginBottom="20dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnExploreCatalogOrders"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="Start Printing"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"
+                android:backgroundTint="#EA580C" />
+
+        </LinearLayout>
+
+    </FrameLayout>
 
 </LinearLayout>

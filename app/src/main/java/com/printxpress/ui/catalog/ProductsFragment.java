@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.tabs.TabLayout;
 import com.printxpress.R;
 import com.printxpress.data.entity.Category;
 import com.printxpress.data.entity.Product;
@@ -106,6 +107,25 @@ public class ProductsFragment extends Fragment {
             }
         );
         rvProducts.setAdapter(productAdapter);
+
+        // Tab Layout Listener (Products vs Templates)
+        TabLayout tabLayout = view.findViewById(R.id.tabLayoutProducts);
+        if (tabLayout != null) {
+            tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    if (tab.getPosition() == 1) {
+                        rvProducts.setVisibility(View.GONE);
+                        rvTemplates.setVisibility(View.VISIBLE);
+                    } else {
+                        rvProducts.setVisibility(View.VISIBLE);
+                        rvTemplates.setVisibility(View.GONE);
+                    }
+                }
+                @Override public void onTabUnselected(TabLayout.Tab tab) {}
+                @Override public void onTabReselected(TabLayout.Tab tab) {}
+            });
+        }
 
         setupCategoryChips();
         loadProductsAndTemplates();
