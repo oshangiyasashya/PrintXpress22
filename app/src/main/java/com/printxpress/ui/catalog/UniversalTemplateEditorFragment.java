@@ -65,9 +65,22 @@ public class UniversalTemplateEditorFragment extends Fragment {
     private long categoryId = 1;
     private CategoryConfig categoryConfig;
     private TemplateLayout templateLayout;
-    private ActivityResultLauncher<String> imagePickerLauncher;
+    private ActivityResultLauncher<String> imagePickerLauncher, bgPickerLauncher;
     private String uploadedImagePath = "";
     private ScaleGestureDetector scaleGestureDetector;
+    private ImageView ivCanvasBackground;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        bgPickerLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
+            if (uri != null && ivCanvasBackground != null) {
+                ivCanvasBackground.setImageURI(uri);
+                ivCanvasBackground.setVisibility(View.VISIBLE);
+                Toast.makeText(getContext(), "Background image applied successfully!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     private final List<DynamicFieldHolder> fieldHolders = new ArrayList<>();
 
@@ -127,6 +140,7 @@ public class UniversalTemplateEditorFragment extends Fragment {
 
         cardCanvasPreview = view.findViewById(R.id.cardCanvasPreview);
         canvasRelativeLayout = view.findViewById(R.id.canvasRelativeLayout);
+        ivCanvasBackground = view.findViewById(R.id.ivCanvasBackground);
         prevLogo = view.findViewById(R.id.prevLogo);
         centerGuideline = view.findViewById(R.id.centerGuideline);
         styleInspectorPanel = view.findViewById(R.id.styleInspectorPanel);
@@ -210,16 +224,37 @@ public class UniversalTemplateEditorFragment extends Fragment {
             }
         });
 
+        // Background image upload button
+        Button btnUploadBgImage = view.findViewById(R.id.btnUploadBgImage);
+        if (btnUploadBgImage != null) {
+            btnUploadBgImage.setOnClickListener(v -> bgPickerLauncher.launch("image/*"));
+        }
+
         // Color selection buttons
-        view.findViewById(R.id.btnColorBlue).setOnClickListener(v -> cardCanvasPreview.setCardBackgroundColor(Color.parseColor("#1E3A8A")));
-        view.findViewById(R.id.btnColorBlack).setOnClickListener(v -> cardCanvasPreview.setCardBackgroundColor(Color.parseColor("#0F172A")));
-        view.findViewById(R.id.btnColorRed).setOnClickListener(v -> cardCanvasPreview.setCardBackgroundColor(Color.parseColor("#B91C1C")));
-        view.findViewById(R.id.btnColorOrange).setOnClickListener(v -> cardCanvasPreview.setCardBackgroundColor(Color.parseColor("#C2410C")));
+        view.findViewById(R.id.btnColorBlue).setOnClickListener(v -> {
+            if (ivCanvasBackground != null) ivCanvasBackground.setVisibility(View.GONE);
+            cardCanvasPreview.setCardBackgroundColor(Color.parseColor("#172554"));
+        });
+        view.findViewById(R.id.btnColorBlack).setOnClickListener(v -> {
+            if (ivCanvasBackground != null) ivCanvasBackground.setVisibility(View.GONE);
+            cardCanvasPreview.setCardBackgroundColor(Color.parseColor("#0F172A"));
+        });
+        view.findViewById(R.id.btnColorRed).setOnClickListener(v -> {
+            if (ivCanvasBackground != null) ivCanvasBackground.setVisibility(View.GONE);
+            cardCanvasPreview.setCardBackgroundColor(Color.parseColor("#B91C1C"));
+        });
+        view.findViewById(R.id.btnColorOrange).setOnClickListener(v -> {
+            if (ivCanvasBackground != null) ivCanvasBackground.setVisibility(View.GONE);
+            cardCanvasPreview.setCardBackgroundColor(Color.parseColor("#C2410C"));
+        });
 
         Button btnCustomCanvasColor = view.findViewById(R.id.btnCustomCanvasColor);
         if (btnCustomCanvasColor != null) {
             btnCustomCanvasColor.setOnClickListener(v -> {
-                ColorPickerBottomSheet colorPicker = ColorPickerBottomSheet.newInstance(Color.BLUE, color -> cardCanvasPreview.setCardBackgroundColor(color));
+                ColorPickerBottomSheet colorPicker = ColorPickerBottomSheet.newInstance(Color.BLUE, color -> {
+                    if (ivCanvasBackground != null) ivCanvasBackground.setVisibility(View.GONE);
+                    cardCanvasPreview.setCardBackgroundColor(color);
+                });
                 colorPicker.show(getParentFragmentManager(), "CanvasColorPicker");
             });
         }
@@ -263,6 +298,13 @@ public class UniversalTemplateEditorFragment extends Fragment {
                     } else if (cat == 6) {
                         prevLogo.setX(20f * density);
                         prevLogo.setY((cardHeight - logoWidth) / 2f);
+                    } else if (cat == 9 || templateTitle.toLowerCase().contains("calendar")) {
+                        prevLogo.setX(20f * density);
+                        prevLogo.setY(16f * density);
+                    } else if (cat == 8 || templateTitle.toLowerCase().contains("brochure")) {
+                        float panelWidth = cardWidth / 3f;
+                        prevLogo.setX(panelWidth + ((panelWidth - logoWidth) / 2f));
+                        prevLogo.setY(12f * density);
                     } else if (cat == 3) {
                         prevLogo.setX(16f * density);
                         prevLogo.setY(16f * density);
@@ -270,6 +312,29 @@ public class UniversalTemplateEditorFragment extends Fragment {
                         prevLogo.setX(cardWidth - logoWidth - (16 * density));
                         prevLogo.setY(16f * density);
                     }
+                }
+            });
+        }
+
+        if (cat == 8 || templateTitle.toLowerCase().contains("brochure") || templateTitle.toLowerCase().contains("tri-fold")) {
+            cardCanvasPreview.post(() -> {
+                int cardWidth = cardCanvasPreview.getWidth();
+                if (cardWidth > 0) {
+                    float panelWidth = cardWidth / 3f;
+
+                    View fold1 = new View(getContext());
+                    ViewGroup.LayoutParams fold1Params = new ViewGroup.LayoutParams((int)(1.5f * density), ViewGroup.LayoutParams.MATCH_PARENT);
+                    fold1.setLayoutParams(fold1Params);
+                    fold1.setBackgroundColor(Color.parseColor("#475569"));
+                    fold1.setX(panelWidth);
+                    canvasRelativeLayout.addView(fold1, 0);
+
+                    View fold2 = new View(getContext());
+                    ViewGroup.LayoutParams fold2Params = new ViewGroup.LayoutParams((int)(1.5f * density), ViewGroup.LayoutParams.MATCH_PARENT);
+                    fold2.setLayoutParams(fold2Params);
+                    fold2.setBackgroundColor(Color.parseColor("#475569"));
+                    fold2.setX(panelWidth * 2f);
+                    canvasRelativeLayout.addView(fold2, 0);
                 }
             });
         }
@@ -373,6 +438,94 @@ public class UniversalTemplateEditorFragment extends Fragment {
                 }
                 xDp = 16f;
 
+            } else if (cat == 8 || templateTitle.toLowerCase().contains("brochure") || templateTitle.toLowerCase().contains("tri-fold")) {
+                float cardWidthDp = (getResources().getDisplayMetrics().widthPixels / density) - 32f;
+                float panelWidthDp = cardWidthDp / 3f;
+
+                if (i == 0) {
+                    xDp = 10f;
+                    currentYDp = 14f;
+                    tvPreview.setTextColor(Color.parseColor("#38BDF8"));
+                    tvPreview.setTextSize(12f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                } else if (i == 1) {
+                    xDp = 10f;
+                    currentYDp = 38f;
+                    tvPreview.setTextColor(Color.WHITE);
+                    tvPreview.setTextSize(9.5f);
+                } else if (i == 2) {
+                    xDp = 10f;
+                    currentYDp = 56f;
+                    tvPreview.setTextColor(Color.WHITE);
+                    tvPreview.setTextSize(9.5f);
+                } else if (i == 3) {
+                    xDp = 10f;
+                    currentYDp = 74f;
+                    tvPreview.setTextColor(Color.WHITE);
+                    tvPreview.setTextSize(9.5f);
+                } else if (i == 4) {
+                    xDp = 10f;
+                    currentYDp = 92f;
+                    tvPreview.setTextColor(Color.parseColor("#94A3B8"));
+                    tvPreview.setTextSize(9.5f);
+                } else if (i == 5) {
+                    xDp = panelWidthDp + 8f;
+                    currentYDp = 24f;
+                    tvPreview.setTextColor(Color.WHITE);
+                    tvPreview.setTextSize(15f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                } else if (i == 6) {
+                    xDp = panelWidthDp + 8f;
+                    currentYDp = 52f;
+                    tvPreview.setTextColor(Color.parseColor("#FF9F1C"));
+                    tvPreview.setTextSize(10f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                } else if (i == 7) {
+                    xDp = panelWidthDp + 8f;
+                    currentYDp = 86f;
+                    tvPreview.setTextColor(Color.parseColor("#94A3B8"));
+                    tvPreview.setTextSize(9.5f);
+                } else if (i == 8) {
+                    xDp = (panelWidthDp * 2f) + 8f;
+                    currentYDp = 14f;
+                    tvPreview.setTextColor(Color.parseColor("#38BDF8"));
+                    tvPreview.setTextSize(12f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                } else {
+                    xDp = (panelWidthDp * 2f) + 8f;
+                    currentYDp = 38f;
+                    tvPreview.setTextColor(Color.WHITE);
+                    tvPreview.setTextSize(9.5f);
+                }
+            } else if (cat == 9 || templateTitle.toLowerCase().contains("calendar")) {
+                float cardWidthDp = (getResources().getDisplayMetrics().widthPixels / density) - 32f;
+                float halfWidthDp = cardWidthDp / 2f;
+
+                if (i == 0) {
+                    xDp = 16f;
+                    currentYDp = 75f;
+                    tvPreview.setTextColor(Color.parseColor("#FBBF24"));
+                    tvPreview.setTextSize(18f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                } else if (i == 1) {
+                    xDp = 16f;
+                    currentYDp = 102f;
+                    tvPreview.setTextColor(Color.parseColor("#94A3B8"));
+                    tvPreview.setTextSize(10f);
+                    tvPreview.setTypeface(null, Typeface.BOLD);
+                } else if (i == 2) {
+                    xDp = halfWidthDp + 10f;
+                    currentYDp = 14f;
+                    tvPreview.setTextColor(Color.WHITE);
+                    tvPreview.setTextSize(10f);
+                    tvPreview.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
+                    tvPreview.setLineSpacing(4f, 1.2f);
+                } else {
+                    xDp = 16f;
+                    currentYDp = 142f;
+                    tvPreview.setTextColor(Color.parseColor("#E2E8F0"));
+                    tvPreview.setTextSize(9.5f);
+                }
             } else {
                 xDp = 16f;
                 if (i == 0) {

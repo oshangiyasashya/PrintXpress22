@@ -9,16 +9,100 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
+        <!-- Top Header Banner (Matching Login Style) -->
+        <RelativeLayout
+            android:id="@+id/layoutProfileHeader"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:background="@color/header_bg_customer"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/ivProfileTopLogo"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_launcher_foreground_1024"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:contentDescription="@string/cd_top_logo" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnProfileMenuHeader"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                app:cardCornerRadius="10dp"
+                app:cardBackgroundColor="#253A78"
+                app:strokeWidth="1dp"
+                app:strokeColor="#3B529A"
+                app:cardElevation="0dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/ic_menu_sort_by_size"
+                    app:tint="@android:color/white"
+                    android:contentDescription="@string/cd_menu_button" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvProfileHeaderTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Profile"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tvProfileHeaderSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Manage your print studio account &amp; settings"
+                    android:textSize="13sp"
+                    android:textColor="#A9B4D6"
+                    android:layout_marginTop="2dp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivProfileMascot"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:src="@drawable/ic_mascot_normal"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/cd_mascot" />
+
+        </RelativeLayout>
+
+        <!-- Main Floating Profile Card (Overlaps header by -50dp) -->
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardProfileContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-50dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="#172554">
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="@color/surface"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/card_stroke">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -27,52 +111,62 @@
                 android:padding="20dp"
                 android:gravity="center_horizontal">
 
-                <ImageView
-                    android:id="@+id/ivProfileAvatar"
-                    android:layout_width="88dp"
-                    android:layout_height="88dp"
-                    android:src="@drawable/ic_profile"
-                    android:background="@drawable/bg_order_gradient"
-                    android:padding="3dp"
-                    android:scaleType="centerCrop"
-                    android:layout_marginBottom="6dp"
-                    android:contentDescription="Profile avatar"/>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:cardCornerRadius="40dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="@color/surface"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="#FF9F1C"
+                    android:layout_marginBottom="6dp">
+
+                    <ImageView
+                        android:id="@+id/ivProfileAvatar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_profile"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Profile avatar"/>
+
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:id="@+id/tvChangeDpPrompt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tap to Change Photo"
+                    android:text="Tap to Change or Remove Photo"
                     android:textSize="12sp"
-                    android:textColor="#38BDF8"
-                    android:layout_marginBottom="12dp"/>
+                    android:textStyle="bold"
+                    android:textColor="#3D9BFA"
+                    android:layout_marginBottom="10dp"/>
 
                 <TextView
                     android:id="@+id/tvUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="John Doe"
-                    android:textSize="22sp"
+                    android:text="Valued Customer"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/text_primary"
                     android:layout_marginBottom="4dp"/>
 
                 <TextView
                     android:id="@+id/tvUserEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="john.doe@example.com"
+                    android:text="Email: customer@printxpress.lk"
                     android:textSize="13sp"
-                    android:textColor="#94A3B8"
+                    android:textColor="@color/text_secondary"
                     android:layout_marginBottom="2dp"/>
 
                 <TextView
                     android:id="@+id/tvUserPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+94 77 123 4567"
+                    android:text="Phone: 0712345678"
                     android:textSize="13sp"
-                    android:textColor="#94A3B8"
+                    android:textColor="@color/text_secondary"
                     android:layout_marginBottom="16dp"/>
 
                 <LinearLayout
@@ -88,7 +182,7 @@
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:cornerRadius="10dp"
-                        android:backgroundTint="#EA580C"
+                        android:backgroundTint="#FF9F1C"
                         android:layout_marginEnd="8dp"/>
 
                     <com.google.android.material.button.MaterialButton
@@ -98,8 +192,8 @@
                         android:layout_height="40dp"
                         android:text="Change Password"
                         android:textSize="12sp"
-                        android:textColor="@android:color/white"
-                        app:strokeColor="@android:color/white"
+                        android:textColor="@color/primary"
+                        app:strokeColor="@color/primary"
                         app:cornerRadius="10dp"/>
 
                 </LinearLayout>
@@ -107,9 +201,11 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- Account Options Cards -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="2dp"
@@ -121,14 +217,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="8dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnAddresses"
                     style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:text="Saved Addresses"
+                    android:layout_height="50dp"
+                    android:text="Saved Delivery Addresses"
                     android:textSize="14sp"
                     android:textColor="@color/text_primary"
                     android:gravity="start|center_vertical"
@@ -144,8 +240,8 @@
                     android:id="@+id/btnSavedDesigns"
                     style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:text="My Designs / Saved Artworks"
+                    android:layout_height="50dp"
+                    android:text="My Saved Designs / Artworks"
                     android:textSize="14sp"
                     android:textColor="@color/text_primary"
                     android:gravity="start|center_vertical"
@@ -161,7 +257,7 @@
                     android:id="@+id/btnNotifications"
                     style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
+                    android:layout_height="50dp"
                     android:text="Notifications Centre"
                     android:textSize="14sp"
                     android:textColor="@color/text_primary"
@@ -176,6 +272,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="24dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="2dp"
@@ -187,13 +284,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="8dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnPaymentMethods"
                     style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
+                    android:layout_height="50dp"
                     android:text="Payment Methods"
                     android:textSize="14sp"
                     android:textColor="@color/text_primary"
@@ -210,7 +307,7 @@
                     android:id="@+id/btnAboutUs"
                     style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
+                    android:layout_height="50dp"
                     android:text="About PrintXpress Studio"
                     android:textSize="14sp"
                     android:textColor="@color/text_primary"
@@ -227,7 +324,7 @@
                     android:id="@+id/btnLogout"
                     style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
+                    android:layout_height="50dp"
                     android:text="Sign Out"
                     android:textSize="14sp"
                     android:textColor="#DC2626"

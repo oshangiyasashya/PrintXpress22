@@ -2,12 +2,18 @@ package com.printxpress;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
+import androidx.navigation.NavGraph;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,8 +22,10 @@ import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.printxpress.data.entity.Order;
+import com.printxpress.data.repository.UserRepository;
 import com.printxpress.ui.admin.AdminDashboardActivity;
 import com.printxpress.ui.orders.OrdersViewModel;
+import com.printxpress.util.ImageLoader;
 import com.printxpress.util.SessionManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         navController = navHostFragment.getNavController();
 
         SessionManager session = new SessionManager(this);
-        androidx.navigation.NavGraph navGraph = navController.getNavInflater().inflate(R.navigation.nav_graph);
+        NavGraph navGraph = navController.getNavInflater().inflate(R.navigation.nav_graph);
         if (session.isLoggedIn()) {
             navGraph.setStartDestination(R.id.catalogFragment);
         } else {
@@ -72,16 +80,26 @@ public class MainActivity extends AppCompatActivity {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, topAppBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
+        drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                updateDrawerHeader();
+            }
+        });
         toggle.syncState();
+
+        updateDrawerHeader();
 
         navigationView.setNavigationItemSelectedListener(item -> {
             drawerLayout.closeDrawer(GravityCompat.START);
             int id = item.getItemId();
             if (id == R.id.action_logout) {
-                new SessionManager(this).logout();
-                androidx.navigation.NavGraph logoutGraph = navController.getNavInflater().inflate(R.navigation.nav_graph);
-                logoutGraph.setStartDestination(R.id.loginFragment);
-                navController.setGraph(logoutGraph);
+                session.logout();
+                Toast.makeText(MainActivity.this, "Signed out successfully", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
                 return true;
             } else if (id == R.id.infoSupport) {
                 navController.navigate(R.id.infoFragment);
@@ -136,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             int destId = destination.getId();
+            updateDrawerHeader();
             if (destId == R.id.loginFragment || destId == R.id.registerFragment) {
                 topAppBar.setVisibility(View.GONE);
                 bottomNav.setVisibility(View.GONE);
@@ -146,6 +165,46 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
             }
         });
+    }
+
+    public void updateDrawerHeader() {
+        if (navigationView == null) return;
+        View headerView = navigationView.getHeaderView(0);
+        if (headerView == null) return;
+
+        TextView tvDrawerUserName = headerView.findViewById(R.id.tvDrawerUserName);
+        TextView tvDrawerUserEmail = headerView.findViewById(R.id.tvDrawerUserEmail);
+        ImageView ivDrawerAvatar = headerView.findViewById(R.id.ivDrawerAvatar);
+
+        SessionManager session = new SessionManager(this);
+        if (session.isLoggedIn()) {
+            UserRepository userRepository = new UserRepository(getApplication());
+            long userId = session.getUserId();
+            if (userId > 0) {
+                userRepository.getUserById(userId).observe(this, user -> {
+                    if (user != null) {
+                        if (tvDrawerUserName != null) tvDrawerUserName.setText(user.fullName);
+                        if (tvDrawerUserEmail != null) tvDrawerUserEmail.setText(user.email);
+                        if (ivDrawerAvatar != null && !TextUtils.isEmpty(user.profileImageUri)) {
+                            ImageLoader.loadCircle(this, user.profileImageUri, ivDrawerAvatar, R.drawable.ic_profile);
+                        } else if (ivDrawerAvatar != null) {
+                            ivDrawerAvatar.setImageResource(R.drawable.ic_profile);
+                        }
+                    }
+                });
+            } else {
+                if (tvDrawerUserName != null && !TextUtils.isEmpty(session.getUserName())) {
+                    tvDrawerUserName.setText(session.getUserName());
+                }
+                if (tvDrawerUserEmail != null && !TextUtils.isEmpty(session.getUserEmail())) {
+                    tvDrawerUserEmail.setText(session.getUserEmail());
+                }
+            }
+        } else {
+            if (tvDrawerUserName != null) tvDrawerUserName.setText("Valued Customer");
+            if (tvDrawerUserEmail != null) tvDrawerUserEmail.setText("Welcome to PrintXpress");
+            if (ivDrawerAvatar != null) ivDrawerAvatar.setImageResource(R.drawable.ic_profile);
+        }
     }
 
     @Override

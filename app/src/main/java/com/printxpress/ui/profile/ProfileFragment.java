@@ -1,5 +1,6 @@
 package com.printxpress.ui.profile;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -28,6 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.printxpress.MainActivity;
 import com.printxpress.R;
 import com.printxpress.data.entity.PaymentMethod;
 import com.printxpress.data.entity.User;
@@ -85,6 +87,13 @@ public class ProfileFragment extends Fragment {
         if (ivProfileAvatar != null) ivProfileAvatar.setOnClickListener(pickDpListener);
         if (tvChangeDpPrompt != null) tvChangeDpPrompt.setOnClickListener(pickDpListener);
 
+        View cardProfileContent = view.findViewById(R.id.cardProfileContent);
+        if (cardProfileContent != null) {
+            cardProfileContent.setTranslationY(150f);
+            cardProfileContent.setAlpha(0f);
+            cardProfileContent.animate().translationY(0f).alpha(1f).setDuration(500).start();
+        }
+
         viewModel.getCurrentUser().observe(getViewLifecycleOwner(), user -> {
             if (user != null) {
                 currentUser = user;
@@ -108,7 +117,11 @@ public class ProfileFragment extends Fragment {
 
         viewModel.getLogoutTrigger().observe(getViewLifecycleOwner(), loggedOut -> {
             if (Boolean.TRUE.equals(loggedOut)) {
-                Navigation.findNavController(requireView()).navigate(R.id.loginFragment);
+                Toast.makeText(getContext(), "Logged out successfully", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(requireContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                if (getActivity() != null) getActivity().finish();
             }
         });
 

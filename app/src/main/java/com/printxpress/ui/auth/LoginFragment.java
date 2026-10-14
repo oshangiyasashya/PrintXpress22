@@ -3,11 +3,14 @@ package com.printxpress.ui.auth;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputLayout;
 import com.printxpress.R;
 import com.printxpress.ui.admin.AdminDashboardActivity;
 import com.printxpress.ui.admin.AdminLoginActivity;
@@ -26,9 +30,12 @@ import com.printxpress.util.SessionManager;
 public class LoginFragment extends Fragment {
 
     private EditText etEmail, etPassword;
+    private TextInputLayout tilEmail, tilPassword;
     private Button btnLogin;
     private TextView tvRegister, tvForgotPassword;
     private MaterialButton btnAdminPortal;
+    private ImageView ivMascot;
+    private View cardLoginContent;
     private AuthViewModel authViewModel;
 
     @Nullable
@@ -42,12 +49,30 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
 
+        tilEmail = view.findViewById(R.id.tilEmail);
+        tilPassword = view.findViewById(R.id.tilPassword);
         etEmail = view.findViewById(R.id.etEmail);
         etPassword = view.findViewById(R.id.etPassword);
         btnLogin = view.findViewById(R.id.btnLogin);
         tvRegister = view.findViewById(R.id.tvRegister);
         tvForgotPassword = view.findViewById(R.id.tvForgotPassword);
         btnAdminPortal = view.findViewById(R.id.btnAdminPortal);
+        ivMascot = view.findViewById(R.id.ivMascot);
+        cardLoginContent = view.findViewById(R.id.cardLoginContent);
+
+        // Entrance animation
+        if (cardLoginContent != null) {
+            cardLoginContent.setTranslationY(150f);
+            cardLoginContent.setAlpha(0f);
+            cardLoginContent.animate().translationY(0f).alpha(1f).setDuration(500).start();
+        }
+
+        // Interactive Mascot Eye-Covering Swap on Password Focus
+        if (etPassword != null && ivMascot != null) {
+            etPassword.setOnFocusChangeListener((v, hasFocus) -> {
+                ivMascot.setImageResource(hasFocus ? R.drawable.ic_mascot_shy : R.drawable.ic_mascot_normal);
+            });
+        }
 
         // Pre-fill remembered email
         SessionManager session = new SessionManager(requireContext());
@@ -83,18 +108,41 @@ public class LoginFragment extends Fragment {
             btnLogin.setText(loading ? "Signing in..." : "Login");
         });
 
-        btnLogin.setOnClickListener(v -> {
-            String email = etEmail.getText().toString();
-            String password = etPassword.getText().toString();
-            authViewModel.login(email, password);
-        });
+        btnLogin.setOnClickListener(v -> validateAndLogin());
 
         tvRegister.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.registerFragment));
         tvForgotPassword.setOnClickListener(v -> showForgotPasswordDialog());
-        btnAdminPortal.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), AdminLoginActivity.class);
-            startActivity(intent);
-        });
+        if (btnAdminPortal != null) {
+            btnAdminPortal.setOnClickListener(v -> {
+                Intent intent = new Intent(requireContext(), AdminLoginActivity.class);
+                startActivity(intent);
+            });
+        }
+    }
+
+    private void validateAndLogin() {
+        if (tilEmail != null) tilEmail.setError(null);
+        if (tilPassword != null) tilPassword.setError(null);
+
+        String email = etEmail.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
+        boolean valid = true;
+
+        if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            if (tilEmail != null) tilEmail.setError("Enter a valid email address");
+            else etEmail.setError("Enter a valid email address");
+            valid = false;
+        }
+
+        if (TextUtils.isEmpty(password) || password.length() < 6) {
+            if (tilPassword != null) tilPassword.setError("Password must be at least 6 characters");
+            else etPassword.setError("Password must be at least 6 characters");
+            valid = false;
+        }
+
+        if (valid) {
+            authViewModel.login(email, password);
+        }
     }
 
     private void showForgotPasswordDialog() {

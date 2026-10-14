@@ -56,12 +56,36 @@ public class TemplateLayout {
             )), true, true, false);
         }
 
-        if (lower.contains("flyer") || lower.contains("brochure") || lower.contains("menu")) {
+        if (lower.contains("brochure") || lower.contains("tri-fold") || lower.contains("trifold")) {
             return new TemplateLayout(new ArrayList<>(Arrays.asList(
-                new TemplateField("restaurant", "Restaurant/Business name", "Name", "Spice Garden", "text", true, 40),
-                new TemplateField("items", "Details/Items", "Details", "Rice & Curry - Rs. 600 / Kottu - Rs. 750", "text", true, 100),
-                new TemplateField("hours", "Hours/Validity", "Hours", "Open 10 AM - 10 PM", "text", true, 30),
-                new TemplateField("phone", "Phone", "Phone", "0712345678", "phone", true, 15)
+                new TemplateField("contact_header", "Left Panel: Header", "Header", "CONTACT US", "text", true, 30),
+                new TemplateField("phone", "Left Panel: Phone", "Phone", "+94 11 2345678", "phone", true, 20),
+                new TemplateField("email", "Left Panel: Email", "Email", "info@apexcorp.lk", "email", true, 40),
+                new TemplateField("website", "Left Panel: Website", "Website", "www.apexcorp.lk", "url", true, 40),
+                new TemplateField("address", "Left Panel: Address", "Address", "Colombo 03, Sri Lanka", "text", false, 50),
+                new TemplateField("main_title", "Middle Panel: Title", "Title", "TRIFOLD BROCHURE", "text", true, 40),
+                new TemplateField("tagline", "Middle Panel: Tagline", "Tagline", "ABSTRACT TRI-FOLD DESIGN", "text", true, 50),
+                new TemplateField("company", "Middle Panel: Company", "Company", "APEX PRINT STUDIO", "text", true, 40),
+                new TemplateField("service_header", "Right Panel: Header", "Header", "OUR SERVICES", "text", true, 30),
+                new TemplateField("features", "Right Panel: Services List", "Services", "01 Digital Offset • 02 Custom Apparel • 03 Express Shipping", "text", true, 100)
+            )), true, true, false);
+        }
+
+        if (lower.contains("flyer") || lower.contains("menu")) {
+            return new TemplateLayout(new ArrayList<>(Arrays.asList(
+                new TemplateField("restaurant", "Business / Restaurant Name", "Name", "Spice Garden Studio", "text", true, 40),
+                new TemplateField("items", "Promo Details & Pricing", "Details", "Special Meal Combo - Rs. 750 / Free Delivery", "text", true, 100),
+                new TemplateField("hours", "Hours / Validity", "Hours", "Open Mon - Sat: 9 AM - 9 PM", "text", true, 30),
+                new TemplateField("phone", "Contact Phone", "Phone", "+94 77 123 4567", "phone", true, 15)
+            )), true, true, false);
+        }
+
+        if (lower.contains("calendar")) {
+            return new TemplateLayout(new ArrayList<>(Arrays.asList(
+                new TemplateField("year_month", "Year & Month", "Year Month", "2026 JANUARY", "text", true, 30),
+                new TemplateField("company", "Company / Brand Name", "Company", "APEX PRINT STUDIO", "text", true, 40),
+                new TemplateField("calendar_grid", "Month Dates Grid", "Dates Grid", "Sun  Mon  Tue  Wed  Thu  Fri  Sat\n                        1     2     3\n  4     5     6     7     8     9    10\n 11   12   13   14   15   16   17\n 18   19   20   21   22   23   24\n 25   26   27   28   29   30   31", "text", true, 200),
+                new TemplateField("contact", "Contact & Address", "Contact", "www.apexcorp.lk | +94 11 2345678", "text", false, 50)
             )), true, true, false);
         }
 

@@ -15,128 +15,226 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="vertical">
 
-            <com.google.android.material.card.MaterialCardView
+            <!-- Top Header Banner -->
+            <RelativeLayout
+                android:id="@+id/layoutDetailHeader"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="3dp"
-                app:cardBackgroundColor="@color/surface"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/card_stroke">
+                android:background="@color/header_bg_customer"
+                android:padding="16dp">
 
                 <ImageView
-                    android:id="@+id/ivProductImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerInside"
-                    android:padding="16dp"
-                    android:contentDescription="Product Image" />
+                    android:id="@+id/ivDetailTopLogo"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_launcher_foreground_1024"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:contentDescription="@string/cd_top_logo" />
 
-            </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnDetailMenuHeader"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    app:cardCornerRadius="10dp"
+                    app:cardBackgroundColor="#253A78"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#3B529A"
+                    app:cardElevation="0dp">
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="3dp"
-                app:cardBackgroundColor="@color/surface"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/card_stroke">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/ic_menu_sort_by_size"
+                        app:tint="@android:color/white"
+                        android:contentDescription="@string/cd_menu_button" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:id="@+id/tvProductName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Standard Business Cards"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_primary"
-                        android:layout_marginBottom="6dp" />
-
-                    <TextView
-                        android:id="@+id/tvProductPrice"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="From Rs. 1,500.00"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="#059669"
-                        android:layout_marginBottom="12dp" />
-
-                    <TextView
-                        android:id="@+id/tvProductDescription"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="High-quality 350gsm premium matte cardstock with single or double-sided vibrant full-color printing."
-                        android:textSize="14sp"
-                        android:textColor="@color/text_secondary"
-                        android:lineSpacingExtra="3dp" />
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="3dp"
-                app:cardBackgroundColor="@color/surface"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/card_stroke">
+                </com.google.android.material.card.MaterialCardView>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Specifications"
-                        android:textSize="16sp"
+                        android:text="Product Details"
+                        android:textSize="22sp"
                         android:textStyle="bold"
-                        android:textColor="@color/text_primary"
-                        android:layout_marginBottom="10dp" />
+                        android:textColor="@android:color/white" />
 
                     <TextView
-                        android:id="@+id/tvProductMaterial"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Material: 350gsm Premium Matte Paper"
-                        android:textSize="13sp"
-                        android:textColor="@color/text_primary"
-                        android:layout_marginBottom="6dp" />
-
-                    <TextView
-                        android:id="@+id/tvProductSizes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Standard Size: 90 x 55 mm"
-                        android:textSize="13sp"
-                        android:textColor="@color/text_primary" />
+                        android:text="Premium digital offset &amp; custom merchandise"
+                        android:textSize="12sp"
+                        android:textColor="#A9B4D6"
+                        android:layout_marginTop="2dp" />
 
                 </LinearLayout>
 
-            </com.google.android.material.card.MaterialCardView>
+                <ImageView
+                    android:id="@+id/ivDetailMascot"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:src="@drawable/ic_mascot_normal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="8dp"
+                    android:contentDescription="@string/cd_mascot" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:layout_marginTop="-40dp">
+
+                <!-- Floating Main Image Preview Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardProductImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp"
+                    app:cardBackgroundColor="@color/surface"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/card_stroke">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/selection_border"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:id="@+id/ivProductImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_cat_business_card"
+                            android:scaleType="fitCenter"
+                            android:contentDescription="Product Image" />
+
+                    </FrameLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Floating Details Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="@color/surface"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/card_stroke">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="18dp">
+
+                        <TextView
+                            android:id="@+id/tvProductName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Standard Business Cards"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginBottom="6dp" />
+
+                        <TextView
+                            android:id="@+id/tvProductPrice"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Starting at Rs. 1,500.00"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            android:textColor="#059669"
+                            android:layout_marginBottom="12dp" />
+
+                        <TextView
+                            android:id="@+id/tvProductDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="High-quality 350gsm premium matte cardstock with single or double-sided vibrant full-color printing."
+                            android:textSize="13sp"
+                            android:textColor="@color/text_secondary"
+                            android:lineSpacingExtra="3dp" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Specifications Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="@color/surface"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/card_stroke">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="18dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Print Specifications"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginBottom="10dp" />
+
+                        <TextView
+                            android:id="@+id/tvProductMaterial"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Material: 350gsm Premium Matte Paper"
+                            android:textSize="13sp"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginBottom="6dp" />
+
+                        <TextView
+                            android:id="@+id/tvProductSizes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Standard Size: 90 x 55 mm"
+                            android:textSize="13sp"
+                            android:textColor="@color/text_primary" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
+    <!-- Bottom Action Bar -->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -155,25 +253,27 @@
                 android:id="@+id/btnAddToCart"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
-                android:layout_height="52dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:text="+ Add to Cart"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:textColor="@color/primary"
+                app:strokeColor="@color/primary"
                 android:layout_marginEnd="8dp"
                 app:cornerRadius="12dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCustomize"
                 android:layout_width="0dp"
-                android:layout_height="52dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:text="Start Designing →"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:layout_marginStart="8dp"
                 app:cornerRadius="12dp"
-                android:backgroundTint="#EA580C" />
+                android:backgroundTint="#FF9F1C" />
 
         </LinearLayout>
 

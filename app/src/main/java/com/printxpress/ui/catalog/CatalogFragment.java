@@ -219,14 +219,21 @@ public class CatalogFragment extends Fragment {
         // 7. Seasonal Offers List
         RecyclerView rvOffers = view.findViewById(R.id.rvSeasonalOffers);
         rvOffers.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        offersAdapter = new GenericAdapter<>(
+        offersAdapter = new GenericAdapter<>(R.layout.item_offer_card,
             (v, promo) -> {
-                TextView tvMain = v.findViewById(R.id.tvMain);
-                TextView tvSub = v.findViewById(R.id.tvSub);
-                tvMain.setText(promo.title);
-                tvSub.setText(promo.description + " (-" + (int)promo.discountPercent + "%)");
+                TextView tvTitle = v.findViewById(R.id.tvOfferTitle);
+                TextView tvDesc = v.findViewById(R.id.tvOfferDesc);
+                TextView tvDiscount = v.findViewById(R.id.tvOfferDiscount);
+                if (tvTitle != null) tvTitle.setText(promo.title);
+                if (tvDesc != null) tvDesc.setText(promo.description);
+                if (tvDiscount != null) tvDiscount.setText((int) promo.discountPercent + "%");
             },
-            promo -> {}
+            promo -> {
+                Bundle bundle = new Bundle();
+                bundle.putLong("categoryId", -1);
+                bundle.putString("categoryName", promo.title);
+                Navigation.findNavController(view).navigate(R.id.productsFragment, bundle);
+            }
         );
         rvOffers.setAdapter(offersAdapter);
 

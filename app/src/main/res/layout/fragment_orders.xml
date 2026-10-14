@@ -6,14 +6,41 @@
     android:orientation="vertical"
     android:background="@color/background">
 
+    <!-- Top Header Banner -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:background="@color/header_bg_customer"
+        android:elevation="2dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Orders &amp; Print Status"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="2dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Track real-time production, printing &amp; delivery"
+            android:textSize="13sp"
+            android:textColor="#A9B4D6"/>
+
+    </LinearLayout>
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayoutOrders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/surface"
         app:tabMode="scrollable"
-        app:tabIndicatorColor="#EA580C"
-        app:tabSelectedTextColor="#EA580C"
+        app:tabIndicatorColor="#FF9F1C"
+        app:tabSelectedTextColor="#FF9F1C"
         app:tabTextColor="@color/text_secondary"
         app:elevation="2dp" />
 
@@ -29,6 +56,7 @@
             android:padding="16dp"
             android:clipToPadding="false" />
 
+        <!-- Cute Empty Orders Layout -->
         <LinearLayout
             android:id="@+id/layoutEmptyOrdersCustomer"
             android:layout_width="wrap_content"
@@ -40,18 +68,17 @@
             android:visibility="gone">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/ic_cat_brochure"
-                app:tint="@color/text_secondary"
-                android:contentDescription="Empty Orders"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_mascot_normal"
+                android:contentDescription="Empty Orders Mascot"
                 android:layout_marginBottom="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No Orders Here Yet"
-                android:textSize="18sp"
+                android:text="No Orders Yet! 📦"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary"
                 android:layout_marginBottom="6dp" />
@@ -59,7 +86,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your placed print orders and tracking details will appear here."
+                android:text="Your placed print orders and live tracking details will appear here."
                 android:textSize="13sp"
                 android:textColor="@color/text_secondary"
                 android:gravity="center"
@@ -69,10 +96,10 @@
                 android:id="@+id/btnExploreCatalogOrders"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:text="Start Printing"
+                android:text="Start Printing Cute Items →"
                 android:textStyle="bold"
                 app:cornerRadius="12dp"
-                android:backgroundTint="#EA580C" />
+                android:backgroundTint="#FF9F1C" />
 
         </LinearLayout>
 

@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Brand Primary Colors -->
-    <color name="primary">#172554</color>
-    <color name="primary_variant">#0F172A</color>
+    <color name="primary">#2563EB</color>
+    <color name="primary_variant">#172554</color>
     <color name="primary_royal">#2563EB</color>
 
+    <!-- Header Colors -->
+    <color name="header_bg_customer">#18265A</color>
+    <color name="header_bg_admin">#4B3F9E</color>
+
     <!-- Accent Colors -->
-    <color name="secondary">#EA580C</color>
-    <color name="secondary_variant">#C2410C</color>
+    <color name="secondary">#FF9F1C</color>
+    <color name="secondary_variant">#EA580C</color>
     <color name="accent_pink">#EC4899</color>
     <color name="accent_cyan">#06B6D4</color>
+
+    <!-- Mascot & Input Colors -->
+    <color name="mascot_orange">#FF9F1C</color>
+    <color name="input_fill">#F4F6F8</color>
 
     <!-- Splash Colors -->
     <color name="splash_bg">#18265A</color>
@@ -24,7 +32,7 @@
     <color name="status_cancelled">#DC2626</color>
 
     <!-- Neutrals & Surfaces -->
-    <color name="background">#F8FAFC</color>
+    <color name="background">#F4F6F8</color>
     <color name="surface">#FFFFFF</color>
     <color name="text_primary">#0F172A</color>
     <color name="text_secondary">#64748B</color>

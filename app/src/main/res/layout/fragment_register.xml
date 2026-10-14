@@ -9,67 +9,106 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp"
-        android:gravity="center_horizontal">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <!-- Top Header Banner -->
+        <RelativeLayout
+            android:id="@+id/layoutRegisterHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:paddingTop="16dp"
-            android:paddingBottom="12dp">
+            android:layout_height="240dp"
+            android:background="@color/header_bg_customer"
+            android:padding="16dp">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/printxpress_logo"
-                android:contentDescription="PrintXpress Logo"
-                android:layout_marginBottom="8dp"/>
+                android:id="@+id/ivRegisterTopLogo"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_launcher_foreground_1024"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:contentDescription="@string/cd_top_logo" />
 
-            <TextView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnRegisterMenuHeader"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                app:cardCornerRadius="10dp"
+                app:cardBackgroundColor="#253A78"
+                app:strokeWidth="1dp"
+                app:strokeColor="#3B529A"
+                app:cardElevation="0dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/ic_menu_sort_by_size"
+                    app:tint="@android:color/white"
+                    android:contentDescription="@string/cd_menu_button" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Join PrintXpress"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_primary"/>
+                android:orientation="vertical"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Create your customer account to start printing"
-                android:textSize="13sp"
-                android:textColor="@color/text_secondary"
-                android:layout_marginTop="2dp"/>
+                <TextView
+                    android:id="@+id/tvRegisterHeaderTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/signup_welcome_title"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tvRegisterHeaderSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/signup_welcome_subtitle"
+                    android:textSize="13sp"
+                    android:textColor="#A9B4D6"
+                    android:layout_marginTop="2dp" />
 
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivRegisterMascot"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/ic_mascot_normal"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/cd_mascot" />
+
+        </RelativeLayout>
+
+        <!-- Floating Card View -->
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardRegisterContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-40dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
             app:cardCornerRadius="16dp"
-            app:cardElevation="3dp"
+            app:cardElevation="6dp"
             app:cardBackgroundColor="@color/surface"
             app:strokeWidth="1dp"
-            app:strokeColor="@color/card_stroke"
-            android:layout_marginBottom="16dp">
+            app:strokeColor="@color/card_stroke">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="20dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Customer Registration"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/text_primary"
-                    android:layout_marginBottom="16dp"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilFullName"
@@ -78,18 +117,19 @@
                     android:layout_height="wrap_content"
                     android:hint="Full Name"
                     app:startIconDrawable="@android:drawable/ic_menu_myplaces"
-                    app:boxCornerRadiusTopStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusBottomEnd="12dp"
-                    android:layout_marginBottom="14dp">
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxBackgroundColor="@color/input_fill"
+                    android:layout_marginBottom="12dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etFullName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
-                        android:maxLines="1"/>
+                        android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,20 +138,21 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email Address"
-                    app:startIconDrawable="@android:drawable/ic_dialog_email"
-                    app:boxCornerRadiusTopStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusBottomEnd="12dp"
-                    android:layout_marginBottom="14dp">
+                    android:hint="Email"
+                    app:startIconDrawable="@drawable/ic_email"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxBackgroundColor="@color/input_fill"
+                    android:layout_marginBottom="12dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
-                        android:maxLines="1"/>
+                        android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,20 +161,21 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phone Number"
+                    android:hint="Phone (e.g. 0712345678)"
                     app:startIconDrawable="@android:drawable/ic_menu_call"
-                    app:boxCornerRadiusTopStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusBottomEnd="12dp"
-                    android:layout_marginBottom="14dp">
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxBackgroundColor="@color/input_fill"
+                    android:layout_marginBottom="12dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPhone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="phone"
-                        android:maxLines="1"/>
+                        android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -143,47 +185,49 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
-                    app:startIconDrawable="@android:drawable/ic_lock_lock"
-                    app:passwordToggleEnabled="true"
-                    app:boxCornerRadiusTopStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusBottomEnd="12dp"
-                    android:layout_marginBottom="20dp">
+                    app:startIconDrawable="@drawable/ic_lock"
+                    app:endIconMode="password_toggle"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxBackgroundColor="@color/input_fill"
+                    android:layout_marginBottom="16dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:maxLines="1"/>
+                        android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnRegister"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
+                    android:layout_height="48dp"
                     android:text="Create Account"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    app:cornerRadius="12dp"
-                    android:backgroundTint="#EA580C"/>
+                    app:cornerRadius="10dp"
+                    android:backgroundTint="@color/primary"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:id="@+id/tvLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Already have an account? Sign In"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:padding="6dp" />
 
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
-
-        <TextView
-            android:id="@+id/tvLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Already have an account? Sign In"
-            android:textSize="14sp"
-            android:textColor="@color/secondary"
-            android:textStyle="bold"
-            android:padding="8dp"
-            android:layout_marginBottom="24dp"/>
 
     </LinearLayout>
 

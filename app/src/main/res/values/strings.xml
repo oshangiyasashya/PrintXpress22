@@ -16,6 +16,14 @@
     <string name="login_title">Login</string>
     <string name="register_title">Create Account</string>
     <string name="welcome_message">Welcome back</string>
+    <string name="welcome_back_title">Welcome Back!</string>
+    <string name="welcome_back_subtitle">Let\'s get printing!</string>
+    <string name="admin_welcome_title">PrintXpress Admin</string>
+    <string name="admin_welcome_subtitle">Secure Management Studio</string>
+    <string name="signup_welcome_title">Join PrintXpress</string>
+    <string name="signup_welcome_subtitle">Create your cute print account</string>
+    <string name="empty_orders_title">No orders yet, let\'s print something!</string>
+    <string name="empty_cart_title">Your cart is empty, explore our products!</string>
     <string name="btn_login">Login</string>
     <string name="btn_register">Register</string>
     <string name="prompt_no_account">Don\'t have an account? Register</string>
@@ -25,4 +33,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="splash_subtitle">Premium Digital &amp; Custom Merchandise Studio</string>
     <string name="cd_splash_logo">PrintXpress Studio Logo</string>
+    <string name="cd_mascot">Cute Print Mascot</string>
+    <string name="cd_top_logo">PrintXpress Logo Mark</string>
+    <string name="cd_menu_button">Menu Button</string>
 </resources>
